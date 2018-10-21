@@ -59,7 +59,6 @@ public class Solutions {
             int size = nums.size();
             median = (nums.get(size - 1) + nums.get(size - 2)) / 2.0;
         }
-
         return median;
     }
 
