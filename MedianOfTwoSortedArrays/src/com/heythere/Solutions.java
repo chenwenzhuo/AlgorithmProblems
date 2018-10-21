@@ -62,7 +62,12 @@ public class Solutions {
         return median;
     }
 
+    //返回数组的中位数
     public double medianOfArray(int[] intArray) {
+        if (0 == intArray.length) {
+            throw new IllegalArgumentException("数组不可为空！");
+        }
+
         int arraySize = intArray.length;
         if (1 == arraySize) {
             return intArray[0];
