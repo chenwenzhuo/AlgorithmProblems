@@ -3,19 +3,26 @@ package com.heythere;
 import java.util.HashMap;
 
 public class Solutions {
+    //时间复杂度太高
     public String longestPalindrome(String s) {
         //检查参数是否合法
-        if (null == s || s.equals("")) {
-            throw new IllegalArgumentException("参数非法，字符串为空或null");
+        if (null == s) {
+            throw new IllegalArgumentException("参数非法，字符串为null");
+        }
+
+        //长度为0或1，则本身即为最长回文子串
+        if (s.length() <= 1) {
+            return s;
         }
 
         //用HashMap保存s中所有字符及字符出现次数
         HashMap<Character, Integer> chars_Occurrences = new HashMap<>();
         //最长回文子串
-        String longestPalindromicSubstring = null;
+        //字符串不为null或空，则至少存在长度为1的回文子串
+        String longestPalindromicSubstring = "" + s.charAt(0);
 
         for (int i = 0; i < s.length(); i++) {
-            char aCharOfStr = s.charAt(i);
+            char aCharOfStr = s.charAt(i);//当前遇到的字符
 
             if (!chars_Occurrences.containsKey(aCharOfStr)) {
                 //遇到新字符，将其加入HashMap中
@@ -31,8 +38,33 @@ public class Solutions {
             下一步检查：
             更新了occurrence的字符与前方此字符的occurrence构成的子串是否回文
              */
+            int index_aCharOfStr = i;//aCharOfStr在前方的occurrence的下标
+            for (int j = 0; j < oldOccurrence; j++) {
+                index_aCharOfStr = s.substring(0, index_aCharOfStr).lastIndexOf(aCharOfStr);
+                String substringToCheck = s.substring(index_aCharOfStr, i + 1);
+                if (isStringPalindromic(substringToCheck) &&
+                        substringToCheck.length() > longestPalindromicSubstring.length()) {
+                    longestPalindromicSubstring = substringToCheck;
+                }
+            }
         }
 
         return longestPalindromicSubstring;
+    }
+
+    public boolean isStringPalindromic(String strToCheck) {
+        boolean isStrPalindromic = true;
+        int begin = 0, end = strToCheck.length() - 1;
+        while (begin < end) {
+            if (strToCheck.charAt(begin) == strToCheck.charAt(end)) {
+                begin++;
+                end--;
+                continue;
+            }
+
+            isStrPalindromic = false;
+            break;
+        }
+        return isStrPalindromic;
     }
 }
