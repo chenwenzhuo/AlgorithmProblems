@@ -3,7 +3,31 @@ package com.heythere;
 import java.util.HashMap;
 
 public class Solutions {
-    //时间复杂度太高
+    boolean[][] isPalindrome;
+
+    public String longestPalindrome_DynamicProgramming(String s) {
+        //检查参数是否合法
+        if (null == s) {
+            throw new IllegalArgumentException("参数非法，字符串不可为null");
+        }
+        int sLength = s.length();
+        isPalindrome = new boolean[sLength + 1][sLength + 1];
+        for (int i = 0; i < sLength + 1; i++) {
+            for (int j = 0; j < sLength + 1; j++) {
+                isPalindrome[i][j] = false;
+            }
+        }
+
+        for (int i = 0; i < sLength + 1; i++) {
+            for (int j = 0; j + i < sLength + 1; j++) {
+
+            }
+        }
+
+        return "";
+    }
+
+    //时间复杂度太高O(n^3)
     public String longestPalindrome(String s) {
         //检查参数是否合法
         if (null == s) {
