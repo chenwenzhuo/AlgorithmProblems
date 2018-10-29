@@ -3,28 +3,63 @@ package com.heythere;
 import java.util.HashMap;
 
 public class Solutions {
-    boolean[][] isPalindrome;
-
     public String longestPalindrome_DynamicProgramming(String s) {
         //检查参数是否合法
         if (null == s) {
             throw new IllegalArgumentException("参数非法，字符串不可为null");
         }
+        if (s.equals("") || 1 == s.length()) {
+            return s;
+        }
+
         int sLength = s.length();
-        isPalindrome = new boolean[sLength + 1][sLength + 1];
-        for (int i = 0; i < sLength + 1; i++) {
-            for (int j = 0; j < sLength + 1; j++) {
-                isPalindrome[i][j] = false;
+        int longestStart = 0, longestEnd = 0;//最长回文子串的起始字符和结束字符下标
+        boolean isPalindrome[][] = new boolean[sLength][sLength];
+
+        for (int i = 0; i < sLength; i++) {
+            for (int j = 0; j < sLength; j++) {
+                //初始化矩阵的值
+                //长度为1的字符串一定回文
+                if (i == j) {
+                    isPalindrome[i][j] = true;
+                    continue;
+                }
+                //找出所有长度为2的回文子串
+                if (1 == j - i) {
+                    isPalindrome[i][j] = (s.charAt(i) == s.charAt(j));
+                    if (isPalindrome[i][j]) {
+                        longestStart = i;
+                        longestEnd = j;
+                    }
+                    continue;
+                }
+                isPalindrome[i][j] = false;//将长度＞2的子串标记初始化为false
             }
         }
 
-        for (int i = 0; i < sLength + 1; i++) {
-            for (int j = 0; j + i < sLength + 1; j++) {
+        int subStringStart;
+        int subStringLen = 3;
+        while (true) {
+            subStringStart = 0;
+            while (subStringStart + subStringLen - 1 < sLength) {
+                isPalindrome[subStringStart][subStringStart + subStringLen - 1] =
+                        (isPalindrome[subStringStart + 1][subStringStart + subStringLen - 2] &&
+                                s.charAt(subStringStart) == s.charAt(subStringStart + subStringLen - 1));
 
+                if (isPalindrome[subStringStart][subStringStart + subStringLen - 1] &&
+                        subStringLen - 1 > longestEnd - longestStart) {
+                    longestStart = subStringStart;
+                    longestEnd = subStringStart + subStringLen - 1;
+                }
+                subStringStart++;
+            }
+            subStringLen++;
+            if (subStringLen > sLength) {
+                break;
             }
         }
 
-        return "";
+        return s.substring(longestStart, longestEnd + 1);
     }
 
     //时间复杂度太高O(n^3)
