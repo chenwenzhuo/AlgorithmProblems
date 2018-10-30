@@ -12,38 +12,41 @@ public class Solutions {
             return s;
         }
 
-        double expandCenter = 0.5;
-        int longestStart = 0, longestEnd = 0;
-        int expandLeft, expandRight;
+        double expandCenter = 0.5;//扩展中心
+        int longestStart = 0, longestEnd = 0;//最长回文子串的起始字符和结束字符下标
+        int expandLeft, expandRight;//向左右扩展的标记值
         int sLength = s.length();
 
+        //扩展中心最大只能到sLength-0.5
         while (expandCenter < sLength) {
+            //初始化左右标记
             if (expandCenter == (int) expandCenter) {
+                //扩展中心为整数，则子串长为奇数
                 expandLeft = (int) expandCenter - 1;
                 expandRight = ((int) expandCenter) + 1;
             } else {
+                //扩展中心为整数，则子串长为偶数
                 expandLeft = (int) expandCenter;
                 expandRight = ((int) expandCenter) + 1;
             }
 
+            //左右扩展标记不能越界
             while (expandLeft >= 0 && expandRight < sLength) {
-                if (s.charAt(expandLeft) == s.charAt(expandRight) &&
-                        (expandRight - expandLeft > longestEnd - longestStart)) {
-                    longestStart = expandLeft;
-                    longestEnd = expandRight;
+                //字符相等则继续扩展，不等则退出循环
+                if (s.charAt(expandLeft) == s.charAt(expandRight)) {
+                    //新长度大于旧长度，更新旧长度的两个标记
+                    if (expandRight - expandLeft > longestEnd - longestStart) {
+                        longestStart = expandLeft;
+                        longestEnd = expandRight;
+                    }
                 } else {
                     break;
                 }
-
                 expandLeft--;
                 expandRight++;
             }
-
-
             expandCenter += 0.5;
         }
-
-
         return s.substring(longestStart, longestEnd + 1);
     }
 

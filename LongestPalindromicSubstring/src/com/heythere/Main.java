@@ -6,7 +6,7 @@ public class Main {
         Solutions solutions = new Solutions();
         String str = "abcdcba";
         String str1 = "aaaa";
-        System.out.println(solutions.longestPalindrome_CenterExpanding(str));
+        //System.out.println(solutions.longestPalindrome_CenterExpanding(str));
         System.out.println(solutions.longestPalindrome_CenterExpanding(str1));
     }
 }
