@@ -3,6 +3,51 @@ package com.heythere;
 import java.util.HashMap;
 
 public class Solutions {
+    public String longestPalindrome_CenterExpanding(String s) {
+        //检查参数是否合法
+        if (null == s) {
+            throw new IllegalArgumentException("参数非法，字符串不可为null");
+        }
+        if (s.equals("") || 1 == s.length()) {
+            return s;
+        }
+
+        double expandCenter = 0.5;
+        int longestStart = 0, longestEnd = 0;
+        int expandLeft, expandRight;
+        int sLength = s.length();
+
+        while (expandCenter < sLength) {
+            if (expandCenter == (int) expandCenter) {
+                expandLeft = (int) expandCenter - 1;
+                expandRight = ((int) expandCenter) + 1;
+            } else {
+                expandLeft = (int) expandCenter;
+                expandRight = ((int) expandCenter) + 1;
+            }
+
+            while (expandLeft >= 0 && expandRight < sLength) {
+                if (s.charAt(expandLeft) == s.charAt(expandRight) &&
+                        (expandRight - expandLeft > longestEnd - longestStart)) {
+                    longestStart = expandLeft;
+                    longestEnd = expandRight;
+                } else {
+                    break;
+                }
+
+                expandLeft--;
+                expandRight++;
+            }
+
+
+            expandCenter += 0.5;
+        }
+
+
+        return s.substring(longestStart, longestEnd + 1);
+    }
+
+
     public String longestPalindrome_DynamicProgramming(String s) {
         //检查参数是否合法
         if (null == s) {
