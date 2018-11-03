@@ -8,6 +8,6 @@ public class Main {
         /*System.out.println(solutions.myAtoi("     "));
         System.out.println(solutions.myAtoi("     123 ab"));
         System.out.println(solutions.myAtoi("ab123"));*/
-        System.out.println(solutions.myAtoi("42"));
+        System.out.println(solutions.myAtoi("425"));
     }
 }
