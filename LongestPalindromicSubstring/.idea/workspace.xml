@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a92b5f60-5fd2-4c3a-8fbe-71bdac4c3d1e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LongestPalindromicSubstring/com/heythere/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LongestPalindromicSubstring/com/heythere/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/heythere/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/heythere/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/heythere/Solutions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/heythere/Solutions.java" afterDir="false" />
-    </list>
+    <list default="true" id="a92b5f60-5fd2-4c3a-8fbe-71bdac4c3d1e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +13,7 @@
     <session id="-277644995">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.16" value="2" />
           <entry key="project.open.time.17" value="2" />
@@ -210,7 +205,7 @@
       <workItem from="1540643389401" duration="3455000" />
       <workItem from="1540818678587" duration="8245000" />
       <workItem from="1540880537655" duration="2157000" />
-      <workItem from="1540882746465" duration="696000" />
+      <workItem from="1540882746465" duration="735000" />
     </task>
     <task id="LOCAL-00001" summary="LongestPalindromicSubstring刚开始">
       <created>1540138649531</created>
@@ -223,7 +218,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20358000" />
+    <option name="totallyTimeSpent" value="20397000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

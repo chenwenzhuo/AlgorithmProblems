@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="67c63057-7b8d-4433-9531-71f0872c6035" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/heythere/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/heythere/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/heythere/Solutions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/heythere/Solutions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LongestPalindromicSubstring/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../LongestPalindromicSubstring/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../StringToIntegerAtoi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../StringToIntegerAtoi/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -18,7 +16,7 @@
     <session id="-1653675155">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.opened" value="2" />
@@ -197,12 +195,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541236426023</updated>
       <workItem from="1541236427467" duration="2361000" />
-      <workItem from="1541251543930" duration="1643000" />
+      <workItem from="1541251543930" duration="1737000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4004000" />
+    <option name="totallyTimeSpent" value="4098000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
