@@ -79,7 +79,11 @@ public class Solutions {
         String thousandDigitSubstring;
 
         for (int i = 3; i > 0; i--) {
-            thousandDigitSubstring = s.substring(romanStringIndex, romanStringIndex + i);
+            try {
+                thousandDigitSubstring = s.substring(romanStringIndex, romanStringIndex + i);
+            } catch (StringIndexOutOfBoundsException exception) {
+                continue;
+            }
             if (thousandDigits.containsKey(thousandDigitSubstring)) {
                 romanStringIndex += thousandDigitSubstring.length();
                 return thousandDigits.get(thousandDigitSubstring);
@@ -92,7 +96,11 @@ public class Solutions {
         String hundredDigitSubstring;
 
         for (int i = 4; i > 0; i--) {
-            hundredDigitSubstring = s.substring(romanStringIndex, romanStringIndex + i);
+            try {
+                hundredDigitSubstring = s.substring(romanStringIndex, romanStringIndex + i);
+            } catch (StringIndexOutOfBoundsException exception) {
+                continue;
+            }
             if (hundredDigits.containsKey(hundredDigitSubstring)) {
                 romanStringIndex += hundredDigitSubstring.length();
                 return hundredDigits.get(hundredDigitSubstring);
@@ -105,7 +113,11 @@ public class Solutions {
         String tenDigitSubstring;
 
         for (int i = 4; i > 0; i--) {
-            tenDigitSubstring = s.substring(romanStringIndex, romanStringIndex + i);
+            try {
+                tenDigitSubstring = s.substring(romanStringIndex, romanStringIndex + i);
+            } catch (StringIndexOutOfBoundsException exception) {
+                continue;
+            }
             if (tenDigits.containsKey(tenDigitSubstring)) {
                 romanStringIndex += tenDigitSubstring.length();
                 return tenDigits.get(tenDigitSubstring);
@@ -118,7 +130,11 @@ public class Solutions {
         String singleDigitSubstring;
 
         for (int i = 4; i > 0; i--) {
-            singleDigitSubstring = s.substring(romanStringIndex, romanStringIndex + i);
+            try {
+                singleDigitSubstring = s.substring(romanStringIndex, romanStringIndex + i);
+            } catch (StringIndexOutOfBoundsException exception) {
+                continue;
+            }
             if (singleDigits.containsKey(singleDigitSubstring)) {
                 romanStringIndex += singleDigitSubstring.length();
                 return singleDigits.get(singleDigitSubstring);
