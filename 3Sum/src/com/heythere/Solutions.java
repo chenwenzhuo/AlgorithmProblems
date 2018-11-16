@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Solutions {
+    //复杂度O(n^2)，仍然超时
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> threeNums = new ArrayList<>();
         int numbersCount = nums.length;//数组长度
@@ -11,31 +12,53 @@ public class Solutions {
         //对数组进行排序
         quickSort(nums, 0, numbersCount - 1);
 
-        //用3个List分别存储数组中的正数，负数，0
-        List<Integer> positive = new ArrayList<>();
-        List<Integer> negative = new ArrayList<>();
+        List<Integer> positive_Repeated = new ArrayList<>();//在nums中有重复情况的正数
+        List<Integer> negative_Repeated = new ArrayList<>();//在nums中有重复情况的负数
         List<Integer> zero = new ArrayList<>();
 
-        List<Integer> positive_NoRepeat = new ArrayList<>();
-        List<Integer> negative_NoRepeat = new ArrayList<>();
+        List<Integer> positive_NoRepeat = new ArrayList<>();//没有重复正数的List
+        List<Integer> negative_NoRepeat = new ArrayList<>();//没有重复负数的List
 
+        //记录下nums中的所有数字，非0数字只记录一次
         for (int num : nums) {
-            if (num > 0) {
-                positive.add(num);
-                if (!positive_NoRepeat.contains(num)) {
-                    positive_NoRepeat.add(num);
-                }
-            } else if (num < 0) {
-                negative.add(num);
-                if (!negative_NoRepeat.contains(num)) {
-                    negative_NoRepeat.add(num);
-                }
-            } else {
+            if (num > 0 && !positive_NoRepeat.contains(num)) {
+                positive_NoRepeat.add(num);
+            } else if (num < 0 && !negative_NoRepeat.contains(num)) {
+                negative_NoRepeat.add(num);
+            } else if (0 == num) {
                 zero.add(num);
             }
         }
-        int positiveCount = positive.size();
-        int negativeCount = negative.size();
+
+        //记录下nums中存在重复的数字
+        for (int i = 0; i < numbersCount; i++) {
+            int appearanceRecord = 1;//记录下当前数字出现过多少次
+            while (i < numbersCount - 1 && nums[i] == nums[i + 1]) {
+                i++;
+                appearanceRecord++;
+            }
+            //若当前数字只出现一次（即没有重复），则不将它加入List中
+            if (1 == appearanceRecord) {
+                continue;
+            }
+
+            if (nums[i] < 0) {
+                negative_Repeated.add(nums[i]);
+            } else if (nums[i] > 0) {
+                positive_Repeated.add(nums[i]);
+            }
+        }
+        /*for (int n : nums) {
+            System.out.print(n + "   ");
+        }
+        System.out.println();
+        System.out.println(positive_Repeated);
+        System.out.println(negative_Repeated);
+        System.out.println(positive_NoRepeat);
+        System.out.println(negative_NoRepeat);*/
+
+        int repeatedPositiveCount = positive_Repeated.size();
+        int repeatedNegativeCount = negative_Repeated.size();
         int zeroCount = zero.size();
 
         int positiveCount_NoRepeat = positive_NoRepeat.size();
@@ -48,28 +71,18 @@ public class Solutions {
 
         //若数组中有0，且存在互为相反数的正负数
         if (zeroCount > 0) {
-            List<Integer> addedPositive = new ArrayList<>();
-            for (int aPositive : positive) {
-                if (negative.contains(aPositive * (-1)) && (!addedPositive.contains(aPositive))) {
+            for (int aPositive : positive_NoRepeat) {
+                if (negative_NoRepeat.contains(aPositive * (-1))) {
                     addNewTriadToList(threeNums, 0, aPositive, aPositive * (-1));
-                    addedPositive.add(aPositive);
                 }
             }
         }
 
         //检查是否存在由两正一负组成的三元组,其中两正数相等
-        for (int i = 0; i < positiveCount; i++) {
-            for (int j = i + 1; j < positiveCount; j++) {
-                int pos_1 = positive.get(i);
-                int pos_2 = positive.get(j);
-
-                if (pos_1 == pos_2) {
-                    int twoPosSum = pos_1 + pos_2;
-
-                    if (negative.contains(twoPosSum * (-1))) {
-                        addNewTriadToList(threeNums, pos_1, pos_2, twoPosSum * (-1));
-                    }
-                }
+        for (Integer aPositive_Repeated : positive_Repeated) {
+            int thisPositive = aPositive_Repeated;
+            if (negative_NoRepeat.contains(thisPositive * (-2))) {
+                addNewTriadToList(threeNums, thisPositive, thisPositive, thisPositive * (-2));
             }
         }
         //检查是否存在由两正一负组成的三元组,其中两正数不相等
@@ -79,25 +92,17 @@ public class Solutions {
                 int pos_2 = positive_NoRepeat.get(j);
                 int twoPosSum = pos_1 + pos_2;
 
-                if (negative.contains(twoPosSum * (-1))) {
+                if (negative_NoRepeat.contains(twoPosSum * (-1))) {
                     addNewTriadToList(threeNums, pos_1, pos_2, twoPosSum * (-1));
                 }
             }
         }
 
         //检查是否存在由两负一正组成的三元组,其中两负数相等
-        for (int i = 0; i < negativeCount; i++) {
-            for (int j = i + 1; j < negativeCount; j++) {
-                int neg_1 = negative.get(i);
-                int neg_2 = negative.get(j);
-
-                if (neg_1 == neg_2) {
-                    int twoNegSum = neg_1 + neg_2;
-
-                    if (positive.contains(twoNegSum * (-1))) {
-                        addNewTriadToList(threeNums, neg_1, neg_2, twoNegSum * (-1));
-                    }
-                }
+        for (Integer aNegative_Repeated : negative_Repeated) {
+            int thisNegative = aNegative_Repeated;
+            if (positive_NoRepeat.contains(thisNegative * (-2))) {
+                addNewTriadToList(threeNums, thisNegative, thisNegative, thisNegative * (-2));
             }
         }
         //检查是否存在由两负一正组成的三元组,其中两负数不相等
@@ -107,7 +112,7 @@ public class Solutions {
                 int pos_2 = negative_NoRepeat.get(j);
                 int twoPosSum = pos_1 + pos_2;
 
-                if (negative.contains(twoPosSum * (-1))) {
+                if (positive_NoRepeat.contains(twoPosSum * (-1))) {
                     addNewTriadToList(threeNums, pos_1, pos_2, twoPosSum * (-1));
                 }
             }
