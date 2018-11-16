@@ -9,7 +9,7 @@ public class Solutions {
     public List<String> letterCombinations(String digits) {
         int digitsCount = digits.length();
         if (0 == digitsCount) {
-            return null;
+            return new ArrayList<String>();//数字串长度为0，返回一个长度为0的List
         }
 
         Map<Integer, String> digitsToLetters = new HashMap<>();
@@ -73,7 +73,7 @@ public class Solutions {
             //获得下一个待处理的数字
             int nextDigit = Integer.parseInt(digits.charAt(digitIndex) + "");
 
-            //以下数字可代表三个字母，将StringBuilder的List扩大为原来的三倍
+            //以下数字可代表三个字母，将letterCombBuilders扩大为原来的三倍并复制字符串
             if ((nextDigit >= 2 && nextDigit <= 6) || 8 == nextDigit) {
                 for (int i = 0; i < letterCombBuilders.size(); i++) {
                     String strCopy = letterCombBuilders.get(i).toString();
@@ -83,14 +83,41 @@ public class Solutions {
                     i += 2;
                 }
 
+                //nextDigit对应的几个字母
+                String strToAdd = digitsToLetters.get(nextDigit);
+                for (int i = 0; i < letterCombBuilders.size(); i++) {
+                    String strToAppend = strToAdd.charAt(i % 3) + "";
+                    letterCombBuilders.get(i).append(strToAppend);
+                }
+            } else if (7 == nextDigit || 9 == nextDigit) {
+                //7和9可代表四个字母，将letterCombBuilders扩大为原来的四倍并复制字符串
+                for (int i = 0; i < letterCombBuilders.size(); i++) {
+                    String strCopy = letterCombBuilders.get(i).toString();
 
+                    letterCombBuilders.add(i, new StringBuilder(strCopy));
+                    letterCombBuilders.add(i, new StringBuilder(strCopy));
+                    letterCombBuilders.add(i, new StringBuilder(strCopy));
+                    i += 3;
+                }
+
+                //nextDigit对应的几个字母
+                String strToAdd = digitsToLetters.get(nextDigit);
+                for (int i = 0; i < letterCombBuilders.size(); i++) {
+                    String strToAppend = strToAdd.charAt(i % 4) + "";
+                    letterCombBuilders.get(i).append(strToAppend);
+                }
             }
 
             digitIndex++;
         }
 
+        //从StringBuilder中获取String并返回
+        List<String> resultStrings = new ArrayList<>();
+        for (StringBuilder letterCombBuilder : letterCombBuilders) {
+            resultStrings.add(letterCombBuilder.toString());
+        }
 
-        return null;
+        return resultStrings;
     }
 
     private void initMap(Map<Integer, String> digitsToLetters) {
