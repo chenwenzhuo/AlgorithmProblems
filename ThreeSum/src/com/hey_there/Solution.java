@@ -1,10 +1,8 @@
 package com.hey_there;
 
-import org.jetbrains.annotations.Contract;
-
 import java.util.*;
 
-public class Solutions {
+public class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> threeNums_SumZero = new ArrayList<>();
 
@@ -23,12 +21,7 @@ public class Solutions {
 
         //先处理特殊情况，即三个0的情况
         if (numsOccurrence.containsKey(0) && numsOccurrence.get(0) >= 3) {
-            List<Integer> threeZeros = new ArrayList<>();
-            threeZeros.add(0);
-            threeZeros.add(0);
-            threeZeros.add(0);
-
-            threeNums_SumZero.add(threeZeros);//将三个0的List加入大List中
+            threeNums_SumZero.add(Arrays.asList(0, 0, 0));//将三个0的List加入大List中
         }
 
         //获取所有键的集合
@@ -40,12 +33,7 @@ public class Solutions {
             }
             if (numsOccurrence.get(key) >= 2 &&
                     numsOccurrence.containsKey(key * (-2))) {
-                List<Integer> threeNums = new ArrayList<>();
-                threeNums.add(key);
-                threeNums.add(key);
-                threeNums.add(key * (-2));
-
-                threeNums_SumZero.add(threeNums);
+                threeNums_SumZero.add(Arrays.asList(key, key, key * (-2)));
             }
         }
 
@@ -58,12 +46,7 @@ public class Solutions {
                 if (numsOccurrence.containsKey((-1) * twoSum)) {//若KeySet中包含twoSum的相反数
                     //twoSum的相反数在keysList中的位置必须在j之后，否则将出现重复
                     if (keysList.indexOf((-1) * twoSum) > j) {
-                        List<Integer> threeNums = new ArrayList<>();
-                        threeNums.add(keysList.get(i));
-                        threeNums.add(keysList.get(j));
-                        threeNums.add((-1) * twoSum);
-
-                        threeNums_SumZero.add(threeNums);
+                        threeNums_SumZero.add(Arrays.asList(keysList.get(i), keysList.get(j), twoSum * (-1)));
                     }
                 }
             }
