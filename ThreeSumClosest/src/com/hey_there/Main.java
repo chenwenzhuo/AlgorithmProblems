@@ -6,10 +6,5 @@ public class Main {
         int[] nums = {1, 2, 4, 8, 16, 32, 64, 128};
         Solution solution = new Solution();
         System.out.println("最接近的和：" + solution.threeSumClosest(nums, 82));
-
-        /*int max = Integer.MAX_VALUE;
-        System.out.println(max);
-        System.out.println(max - 5);
-        System.out.println(Math.abs(max - 5));*/
     }
 }
