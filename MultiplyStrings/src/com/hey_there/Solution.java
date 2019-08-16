@@ -53,15 +53,90 @@ public class Solution {
             }
             tempResults.add(tempResult.toString());
         }
-        System.out.println(tempResults);
 
-        return "";
+        System.out.println(tempResults);
+        return addStrings(tempResults);
     }
 
+    private String addStrings(List<String> numInString) {
+        String sum = "0";//和数字符串
+        int len_sum = sum.length();//和数字符串的长度
 
-    private String addStrings(String num1, String num2) {
+        int sizeOfList = numInString.size();
+        for (int i = 0; i < sizeOfList; i++) {
+            String currentStr = numInString.get(i);//获取当前参与运算的数字字符串
+            //若当前加数为0，跳过计算
+            if (currentStr.equals("0")) {
+                continue;
+            }
 
+            int len_currentStr = currentStr.length();//当前数字字符串的长度
 
-        return "";
+            //重新定义两个变量作为加法的操作数
+            //operand_1赋值为长度较长的，operand_2赋值为长度较短的
+            String operand_1, operand_2;
+            int len_operand_1, len_operand_2;
+
+            if (len_sum > len_currentStr) {
+                operand_1 = sum;
+                len_operand_1 = len_sum;
+
+                operand_2 = currentStr;
+                len_operand_2 = len_currentStr;
+            } else {
+                operand_1 = currentStr;
+                len_operand_1 = len_currentStr;
+
+                operand_2 = sum;
+                len_operand_2 = len_sum;
+            }
+
+            System.out.println("operand_1 ----- " + operand_1);
+            System.out.println("operand_2 ----- " + operand_2);
+
+            StringBuilder twoStrSum = new StringBuilder();
+            int carry = 0;//进位
+
+            //先将操作数2的所有位与操作数1的对应位相加
+            for (int j = 1; j <= len_operand_2; j++) {
+                //取操作数1的倒数第j位
+                int operand_1_digit = Integer.parseInt(operand_1.charAt(len_operand_1 - j) + "");
+                //取操作数2的倒数第j位
+                int operand_2_digit = Integer.parseInt(operand_2.charAt(len_operand_2 - j) + "");
+
+                int tempSum = operand_1_digit + operand_2_digit + carry;//将两个当前位与进位位相加
+                carry = tempSum / 10;//更新进位位
+                twoStrSum.insert(0, tempSum % 10);//将tempSum的个位插入
+            }
+
+            //退出上方循环后，长度较短的操作数2已经处理完毕，后面仅处理进位与操作数1相加
+            for (int j = len_operand_2 + 1; j <= len_operand_1; j++) {
+                //若没有进位，直接退出循环
+                if (carry == 0) {
+                    break;
+                }
+
+                //取操作数1的倒数第j位
+                int operand_1_digit = Integer.parseInt(operand_1.charAt(len_operand_1 - j) + "");
+
+                int tempSum = operand_1_digit + carry;
+                carry = tempSum / 10;//更新进位位
+                twoStrSum.insert(0, tempSum % 10);//将tempSum的个位插入
+            }
+
+            //退出循环后，进位位仍可能非0
+            //若进位位非0，将其插入twoStrSum的最前面
+            if (carry != 0) {
+                twoStrSum.insert(0, carry);
+            }
+
+            //以上操作完成了两数相加，将twoStrSum的值更新到sum中
+            sum = twoStrSum.toString();
+            len_sum = sum.length();
+
+            System.out.println("sum ----- " + sum);
+        }
+
+        return sum;
     }
 }

@@ -4,6 +4,6 @@ public class Main {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        solution.multiply("123", "102");
+        System.out.println(solution.multiply("123", "123"));
     }
 }
