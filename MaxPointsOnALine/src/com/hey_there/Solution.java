@@ -3,14 +3,18 @@ package com.hey_there;
 import java.util.*;
 
 public class Solution {
-    private int param_a, param_b, param_c;
+    private long param_a, param_b, param_c;
 
     public int maxPoints(int[][] points) {
         int rows = points.length;//二维数组的行数，即点数
 
+        if (rows == 1) {
+            return 1;
+        }
+
         //用HashMap存储直线和直线上的点数
         //用List存储 ax+by+c=0 形式的直线方程中的a，b，c参数
-        Map<List<Integer>, Integer> line_and_pointsCount = new HashMap<>();
+        Map<List<Long>, Integer> line_and_pointsCount = new HashMap<>();
 
         for (int index_point1 = 0; index_point1 < rows; index_point1++) {
             //第一个点的横纵坐标
@@ -18,11 +22,11 @@ public class Solution {
             int y_point1 = points[index_point1][1];
 
             for (int index_point2 = index_point1 + 1; index_point2 < rows; index_point2++) {
-                //第一个点的横纵坐标
+                //第二个点的横纵坐标
                 int x_point2 = points[index_point2][0];
                 int y_point2 = points[index_point2][1];
 
-                //计算 ax+by+c=0 形式的直线方程中的a，b，c参数
+                /*//计算 ax+by+c=0 形式的直线方程中的a，b，c参数
                 param_a = y_point1 - y_point2;
                 param_b = x_point2 - x_point1;
                 param_c = y_point1 * (x_point1 - x_point2) - x_point1 * (y_point1 - y_point2);
@@ -31,45 +35,56 @@ public class Solution {
                 simplifyParams();
 
                 //将a，b，c参数存入List
-                List<Integer> lineParams = new ArrayList<>();
+                List<Long> lineParams = new ArrayList<>();
                 lineParams.add(param_a);
                 lineParams.add(param_b);
                 lineParams.add(param_c);
 
-                //检查当前直线是否已出现过
-                if (!line_and_pointsCount.containsKey(lineParams)) {
-                    //若当前直线未出现过，则将其加入map，点数设为2
-                    line_and_pointsCount.put(lineParams, 2);
-                } else {
-                    //若map中已存在当前直线，则将其value值加1
-                    int pointsCount = line_and_pointsCount.get(lineParams);
-                    line_and_pointsCount.put(lineParams, pointsCount + 1);
+                //检查此次计算出的直线是否已存储于map中
+                if (line_and_pointsCount.containsKey(lineParams)) {
+                    //若此次计算出的直线已存储于map中，跳过后续操作
+                    continue;
                 }
+                //若此次计算出的直线不存在于map中，检查point2之后的点是否在此直线上
+                int pointsOnCurrentLine = 2;//当前直线上的点数，初值为2
+                for (int index_subsequent_points = index_point2 + 1;
+                     index_subsequent_points < rows; index_subsequent_points++) {
+                    int x_subs = points[index_subsequent_points][0];
+                    int y_subs = points[index_subsequent_points][1];
+
+                    if (0 == param_a * x_subs + param_b * y_subs + param_c) {
+                        //若检查到在当前直线上的点，点数加一
+                        pointsOnCurrentLine++;
+                    }
+                }
+
+                //将直线参数与点数存入map中
+                line_and_pointsCount.put(lineParams, pointsOnCurrentLine);*/
             }
         }
 
-        //遍历map，获得最大的value值
-        Iterator<Map.Entry<List<Integer>, Integer>> iterator = line_and_pointsCount.entrySet().iterator();
+        /*//遍历map，获得最大的value值
+        Iterator<Map.Entry<List<Long>, Integer>> iterator = line_and_pointsCount.entrySet().iterator();
         int maxValue = 0;
         while (iterator.hasNext()) {
-            Map.Entry<List<Integer>, Integer> entry = iterator.next();
+            Map.Entry<List<Long>, Integer> entry = iterator.next();
 
             System.out.println("直线参数：" + entry.getKey() + "   点数：" + entry.getValue());
 
             maxValue = Math.max(maxValue, entry.getValue());
-        }
+        }*/
 
-        return maxValue;
+        return 0;
     }
 
     private void simplifyParams() {
         //计算三个参数的绝对值
-        int abs_param_a = Math.abs(param_a);
-        int abs_param_b = Math.abs(param_b);
-        int abs_param_c = Math.abs(param_c);
+        long abs_param_a = Math.abs(param_a);
+        long abs_param_b = Math.abs(param_b);
+        long abs_param_c = Math.abs(param_c);
 
         //最小且非零的绝对值
-        int min_nonzero_absParam = -1;
+        long min_nonzero_absParam = -1;
         if (abs_param_a != 0 && min_nonzero_absParam < abs_param_a) {
             min_nonzero_absParam = abs_param_a;
         }
@@ -98,21 +113,10 @@ public class Solution {
 
                 //公约数的值重新设为2
                 commonDivisor = 2;
-            }else {
+            } else {
                 //不是公约数则自增1
                 commonDivisor++;
             }
         }
-    }
-
-    private int countZeros() {
-        int[] params = {param_a, param_b, param_c};
-        int count = 0;
-        for (int param : params) {
-            if (param == 0) {
-                count++;
-            }
-        }
-        return count;
     }
 }
