@@ -15,7 +15,10 @@ public class Solution {
         for (int range = 1; range <= n; range++) {
             //rootVal是根结点的值
             for (int rootVal = 1; rootVal <= range; rootVal++) {
+                int leftTreeLength = rootVal - 1;
+                int rightTreeLength = range - rootVal;
 
+                TreeNode rootNode = new TreeNode(rootVal);//根结点
             }
         }
 
