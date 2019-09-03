@@ -1,4 +1,4 @@
-package com.hey_there;
+package com.hey_there.Fibonacci_DynamicProgramming;
 
 public class Solution {
     public int dynamicFibonacci(int n) {

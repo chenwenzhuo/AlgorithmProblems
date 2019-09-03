@@ -1,4 +1,4 @@
-package com.hey_there;
+package com.hey_there.PrimeNumbersInRange;
 
 public class Solution {
     public int primeNumbersInRange(int low, int high) {
