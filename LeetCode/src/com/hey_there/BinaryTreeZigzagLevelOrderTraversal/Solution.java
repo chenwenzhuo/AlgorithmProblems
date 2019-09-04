@@ -5,7 +5,7 @@ import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
 import java.util.*;
 
 public class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+    public List<List<Integer>> zigzagLevelOrder_1(TreeNode root) {
         List<List<Integer>> result_levelOrder = new ArrayList<>();//储存遍历结果的List
 
         //若为空树，直接返回
@@ -38,71 +38,63 @@ public class Solution {
                 continue;
             }
 
-            currentLevel.add(nextNode.val);//当前结点的值加入集合
-
             if (traversalDirectionMark) {
-                //若traversalDirectionMark为true表示当前层为从左至右，下一层应该先入队右子节点
-                //若当前结点的子节点非空则将其入队
-                if (nextNode.right != null) {
-                    traversalQueue.add(nextNode.right);
-                }
-                if (nextNode.left != null) {
-                    traversalQueue.add(nextNode.left);
-                }
+                //若traversalDirectionMark为true表示当前层为从左至右，新结点加在集合尾
+                currentLevel.add(nextNode.val);//当前结点的值加入集合
             } else {
-                //若traversalDirectionMark为false表示当前层为从右至左，下一层应该先入队左子节点
-                if (nextNode.left != null) {
-                    traversalQueue.add(nextNode.left);
-                }
-                if (nextNode.right != null) {
-                    traversalQueue.add(nextNode.right);
-                }
+                //否则在集合头插入
+                currentLevel.add(0, nextNode.val);
+            }
+
+            //若当前结点的子节点非空则将其入队
+            if (nextNode.left != null) {
+                traversalQueue.add(nextNode.left);
+            }
+            if (nextNode.right != null) {
+                traversalQueue.add(nextNode.right);
             }
         }
 
         return result_levelOrder;
-        /*List<List<Integer>> result_zigzagTraversal = new ArrayList<>();//遍历结果
-        if (root == null) {
-            return result_zigzagTraversal;
-        }
+    }
 
-        Queue<TreeNode> left2right = new LinkedList<>();//从左至右时用队列
-        Stack<TreeNode> right2left = new Stack<>();//从右至左时用栈
-
-        left2right.add(root);//根结点入队
-        //left2right.add(null);//分层标记null
-
-        while (!left2right.isEmpty() || !right2left.empty()) {//当队列和栈同时为空时结束循环
-            List<Integer> levelResult_left2right = new ArrayList<>();//从左至右的层序结果
-            while (!left2right.isEmpty()) {
-                TreeNode nextQueueNode = left2right.poll();//下一个队列结点
-                //将其子节点入栈
-                if (nextQueueNode.left != null) {
-                    right2left.push(nextQueueNode.left);
-                }
-                if (nextQueueNode.right != null) {
-                    right2left.push(nextQueueNode.right);
-                }
-
-                levelResult_left2right.add(nextQueueNode.val);
+    public List<List<Integer>> zigzagLevelOrder_2(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null)
+            return result;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        // 记录是否反转
+        boolean isReverse = false;
+        while (!queue.isEmpty()) {
+            LinkedList<Integer> oneLevel = new LinkedList<>();
+            // 每次都取出一层的所有数据
+            int count = queue.size();
+            for (int i = 0; i < count; i++) {
+                TreeNode node = queue.poll();
+                if (!isReverse)
+                    oneLevel.add(node.val);
+                else
+                    oneLevel.addFirst(node.val);
+                if (node.left != null)
+                    queue.add(node.left);
+                if (node.right != null)
+                    queue.add(node.right);
             }
-            result_zigzagTraversal.add(levelResult_left2right);
-
-            List<Integer> levelResult_right2left = new ArrayList<>();//从右至左的层序结果
-            while ()
+            isReverse = !isReverse;
+            result.add(oneLevel);
         }
-
-        return null;*/
+        return result;
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(3);
-        root.left = new TreeNode(9);
-        root.right = new TreeNode(20);
-        root.right.left = new TreeNode(15);
-        root.right.right = new TreeNode(7);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.right.right = new TreeNode(5);
 
         Solution solution = new Solution();
-        System.out.println(solution.zigzagLevelOrder(root));
+        System.out.println(solution.zigzagLevelOrder_1(root));
     }
 }
