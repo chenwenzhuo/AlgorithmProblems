@@ -42,28 +42,6 @@ public class Solution {
         }
     }
 
-    //非递归的先序遍历
-    public List<Integer> non_recursivePreOrderTraversal(TreeNode treeRoot) {
-        List<Integer> traversalResult = new ArrayList<>();//List集合储存遍历结果
-        Stack<TreeNode> nodeStack = new Stack<>();
-        //TreeNode node = treeRoot;
-
-        nodeStack.push(treeRoot);
-        while (!nodeStack.empty()) {
-            TreeNode tempNode = nodeStack.pop();
-            traversalResult.add(tempNode.val);
-
-            if (tempNode.right != null) {
-                nodeStack.push(tempNode.right);
-            }
-            if (tempNode.left != null) {
-                nodeStack.push(tempNode.left);
-            }
-        }
-
-        return traversalResult;
-    }
-
     //非递归的后序遍历
     public List<Integer> non_recursivePostOrderTraversal(TreeNode treeRoot) {
         List<Integer> traversalResult = new ArrayList<>();//List集合储存遍历结果
