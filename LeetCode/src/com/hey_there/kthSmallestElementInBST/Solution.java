@@ -14,31 +14,57 @@ public class Solution {
     }
 
     private void helper(TreeNode tree) {
-        if (tree == null || count == k) {
+        if (tree == null) {
             return;
         }
 
         helper(tree.left);
 
-        System.out.println("count:   " + count);
-        if (++count == k) {
-            targetValue = tree.val;//若为第k小，赋值给targetValue
+        System.out.println("tree.val:   " + tree.val);
+        //为提前终止递归，将处理过程写成这样
+        if (count < k) {
+            count++;
         }
+        if (count == k) {
+            targetValue = tree.val;//若为第k小，赋值给targetValue
+            count++;
+        }
+        if (count > k) {
+            return;
+        }
+
+        //如此处理，遍历整棵树以获取第k小的值
+        /*if (++count == k) {
+            targetValue = tree.val;//若为第k小，赋值给targetValue
+        }*/
 
         helper(tree.right);
     }
 
+    public void inOrder(TreeNode treeNode) {
+        if (treeNode == null) {
+            return;
+        }
+        inOrder(treeNode.left);
+        System.out.print(treeNode.val + "   ");
+        inOrder(treeNode.right);
+    }
+
     public static void main(String[] args) {
         //建树
-        TreeNode root = new TreeNode(5);
+        TreeNode root = new TreeNode(6);
         root.left = new TreeNode(3);
-        root.right = new TreeNode(6);
+        root.right = new TreeNode(8);
         root.left.left = new TreeNode(2);
         root.left.right = new TreeNode(4);
-        root.left.left.left = new TreeNode(2);
+        root.right.left = new TreeNode(7);
+        root.right.right = new TreeNode(9);
+        root.left.right.right = new TreeNode(5);
+        root.left.left.left = new TreeNode(1);
 
         Solution solution = new Solution();
-        System.out.println(solution.kthSmallest(root, 4));
-        System.out.println("solution.count:   " + solution.count);
+        solution.inOrder(root);
+        System.out.println();
+        System.out.println("第k小的数：" + solution.kthSmallest(root, 7));
     }
 }
