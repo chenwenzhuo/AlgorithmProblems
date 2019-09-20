@@ -1,4 +1,4 @@
-package com.hey_there.BinaryTreeInOrderTraversal;
+package com.hey_there.Tree.UniqueBinarySearchTrees_Count;
 
 public class TreeNode {
     public int val;

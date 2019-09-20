@@ -1,8 +1,7 @@
-package com.hey_there.UniqueBinarySearchTrees_GenTrees;
+package com.hey_there.Tree.UniqueBinarySearchTrees_GenTrees;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class Solution {
     public List<TreeNode> generateTrees(int n) {

@@ -1,4 +1,4 @@
-package com.hey_there.PopulatingNextRightPointersInEachNode;
+package com.hey_there.Tree.PopulatingNextRightPointersInEachNode;
 
 import java.util.LinkedList;
 import java.util.Queue;

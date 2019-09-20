@@ -1,4 +1,4 @@
-package com.hey_there.UniqueBinarySearchTrees_Count;
+package com.hey_there.Tree.UniqueBinarySearchTrees_Count;
 
 public class Solution {
     public int numTrees(int n) {

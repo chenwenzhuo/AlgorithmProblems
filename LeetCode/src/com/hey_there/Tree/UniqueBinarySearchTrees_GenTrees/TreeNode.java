@@ -1,4 +1,4 @@
-package com.hey_there.UniqueBinarySearchTrees_GenTrees;
+package com.hey_there.Tree.UniqueBinarySearchTrees_GenTrees;
 
 public class TreeNode {
     int val;

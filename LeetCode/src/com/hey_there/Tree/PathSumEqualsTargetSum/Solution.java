@@ -1,6 +1,4 @@
-package com.hey_there.PathSumEqualsTargetSum;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
+package com.hey_there.Tree.PathSumEqualsTargetSum;
 
 public class Solution {
     private int targetSum;

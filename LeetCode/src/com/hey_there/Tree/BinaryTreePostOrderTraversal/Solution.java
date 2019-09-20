@@ -1,6 +1,4 @@
-package com.hey_there.BinaryTreePostOrderTraversal;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
+package com.hey_there.Tree.BinaryTreePostOrderTraversal;
 
 import java.util.*;
 

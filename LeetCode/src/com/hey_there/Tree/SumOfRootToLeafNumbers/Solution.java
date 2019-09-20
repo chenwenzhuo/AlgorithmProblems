@@ -1,4 +1,4 @@
-package com.hey_there.SumOfRootToLeafNumbers;
+package com.hey_there.Tree.SumOfRootToLeafNumbers;
 
 import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
 

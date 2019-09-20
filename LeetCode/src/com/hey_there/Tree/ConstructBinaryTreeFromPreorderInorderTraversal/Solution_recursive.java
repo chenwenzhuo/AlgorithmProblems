@@ -1,6 +1,4 @@
-package com.hey_there.ConstructBinaryTreeFromPreorderInorderTraversal;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
+package com.hey_there.Tree.ConstructBinaryTreeFromPreorderInorderTraversal;
 
 import java.util.*;
 

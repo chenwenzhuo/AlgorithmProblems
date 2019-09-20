@@ -1,6 +1,4 @@
-package com.hey_there.PathSumEqualsTargetSum_findAllPaths;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
+package com.hey_there.Tree.PathSumEqualsTargetSum_findAllPaths;
 
 import java.util.ArrayList;
 import java.util.List;

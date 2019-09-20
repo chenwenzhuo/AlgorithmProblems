@@ -1,6 +1,4 @@
-package com.hey_there.CountCompleteTreeNodes;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
+package com.hey_there.Tree.CountCompleteTreeNodes;
 
 public class Solution {
     private int nodeCount = 0;//结点数量

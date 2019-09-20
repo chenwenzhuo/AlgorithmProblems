@@ -1,8 +1,4 @@
-package com.hey_there.BalancedBinaryTree;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
-
-import java.util.Map;
+package com.hey_there.Tree.BalancedBinaryTree;
 
 public class Solution {
     public boolean isBalanced(TreeNode root) {

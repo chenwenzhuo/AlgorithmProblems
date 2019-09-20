@@ -1,6 +1,4 @@
-package com.hey_there.BinaryTreeZigzagLevelOrderTraversal;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
+package com.hey_there.Tree.BinaryTreeZigzagLevelOrderTraversal;
 
 import java.util.*;
 

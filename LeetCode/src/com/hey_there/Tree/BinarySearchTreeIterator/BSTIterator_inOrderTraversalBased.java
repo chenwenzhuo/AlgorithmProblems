@@ -1,6 +1,4 @@
-package com.hey_there.BinarySearchTreeIterator;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
+package com.hey_there.Tree.BinarySearchTreeIterator;
 
 import java.util.ArrayList;
 import java.util.List;

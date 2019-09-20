@@ -1,6 +1,4 @@
-package com.hey_there.ConvertSortedArrayToBinarySearchTree;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
+package com.hey_there.Tree.ConvertSortedArrayToBinarySearchTree;
 
 public class Solution {
     private int[] numsArray;

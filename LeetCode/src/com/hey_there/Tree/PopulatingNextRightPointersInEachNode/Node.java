@@ -1,4 +1,4 @@
-package com.hey_there.PopulatingNextRightPointersInEachNode;
+package com.hey_there.Tree.PopulatingNextRightPointersInEachNode;
 
 class Node {
     public int val;

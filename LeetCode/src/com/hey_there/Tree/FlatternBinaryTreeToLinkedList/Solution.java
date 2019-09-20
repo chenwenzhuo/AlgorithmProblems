@@ -1,6 +1,4 @@
-package com.hey_there.FlatternBinaryTreeToLinkedList;
-
-import com.hey_there.BinaryTreeInOrderTraversal.TreeNode;
+package com.hey_there.Tree.FlatternBinaryTreeToLinkedList;
 
 import java.util.ArrayList;
 import java.util.List;
