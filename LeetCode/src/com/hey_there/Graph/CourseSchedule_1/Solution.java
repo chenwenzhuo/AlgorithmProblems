@@ -1,4 +1,4 @@
-package com.hey_there.Graph.CourseSchedule;
+package com.hey_there.Graph.CourseSchedule_1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
