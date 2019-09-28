@@ -1,8 +1,55 @@
 package com.hey_there.Graph.CourseSchedule_2;
 
-import java.util.LinkedList;
+import java.util.*;
 
 public class Solution {
+    private static final int WHITE = 0;
+    private static final int GRAY = 1;
+    private static final int BLACK = -1;
+
+    private boolean isPossible;
+    private Map<Integer, Integer> nodeColor;
+    private Map<Integer, List<Integer>> adjacencyTable;
+    private List<Integer> topologicalOrder;
+
+    public int[] findOrder_dfsBased(int numCourses, int[][] prerequisites) {
+        init(numCourses, prerequisites);
+
+        return null;
+    }
+
+    private void init(int numCourses, int[][] prerequisites) {
+        this.isPossible = true;
+        this.nodeColor = new HashMap<>();
+        this.adjacencyTable = new HashMap<>();
+        this.topologicalOrder = new ArrayList<>();
+
+        //根据给定的边，构建邻接表
+        for (int[] prerequisite : prerequisites) {
+            if (adjacencyTable.containsKey(prerequisite[1])) {
+                adjacencyTable.get(prerequisite[1]).add(prerequisite[0]);
+            } else {
+                List<Integer> nextNodes = new ArrayList<>();
+                nextNodes.add(prerequisite[1]);
+                nextNodes.add(prerequisite[0]);
+                adjacencyTable.put(prerequisite[1], nextNodes);
+            }
+        }
+
+        //将所有结点的颜色初始化为白色
+        for (int i = 0; i < numCourses; i++) {
+            nodeColor.put(i, WHITE);
+        }
+    }
+
+    private void dfs(int node) {
+        if (!this.isPossible) {
+            return;
+        }
+
+
+    }
+
     //改造CourseSchedule_1中的拓扑排序解法
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] topologicalOrder = new int[numCourses];//图的拓扑排序序列
