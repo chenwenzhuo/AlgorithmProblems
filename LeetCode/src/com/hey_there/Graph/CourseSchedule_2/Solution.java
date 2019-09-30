@@ -14,8 +14,20 @@ public class Solution {
 
     public int[] findOrder_dfsBased(int numCourses, int[][] prerequisites) {
         init(numCourses, prerequisites);
+        for (int node : adjacencyTable.keySet()) {
+            dfs(node);
+        }
 
-        return null;
+        int[] order;
+        if (isPossible) {
+            order = new int[numCourses];
+            for (int i = 0; i < numCourses; i++) {
+                order[i] = topologicalOrder.get(i);
+            }
+        } else {
+            order = new int[0];
+        }
+        return order;
     }
 
     private void init(int numCourses, int[][] prerequisites) {
@@ -25,14 +37,34 @@ public class Solution {
         this.topologicalOrder = new ArrayList<>();
 
         //根据给定的边，构建邻接表
+        for (int i = 0; i < numCourses; i++) {
+            adjacencyTable.put(i, new ArrayList<>());
+        }
         for (int[] prerequisite : prerequisites) {
-            if (adjacencyTable.containsKey(prerequisite[1])) {
-                adjacencyTable.get(prerequisite[1]).add(prerequisite[0]);
-            } else {
-                List<Integer> nextNodes = new ArrayList<>();
-                nextNodes.add(prerequisite[1]);
-                nextNodes.add(prerequisite[0]);
-                adjacencyTable.put(prerequisite[1], nextNodes);
+            List<Integer> nextNodes = adjacencyTable.get(prerequisite[1]);
+            nextNodes.add(prerequisite[0]);
+            adjacencyTable.put(prerequisite[1], nextNodes);
+        }
+
+        if (prerequisites.length == 0) {
+            for (int i = 0; i < numCourses; i++) {
+                adjacencyTable.put(i, new ArrayList<>());
+            }
+        } else {
+            for (int[] prerequisite : prerequisites) {
+                if (!adjacencyTable.containsKey(prerequisite[0])) {
+                    List<Integer> nodeList = new ArrayList<>();
+                    //nodeList.add(prerequisite[0]);
+                    adjacencyTable.put(prerequisite[0], nodeList);
+                }
+                if (adjacencyTable.containsKey(prerequisite[1])) {
+                    adjacencyTable.get(prerequisite[1]).add(prerequisite[0]);
+                } else {
+                    List<Integer> nextNodes = new ArrayList<>();
+                    //nextNodes.add(prerequisite[1]);
+                    nextNodes.add(prerequisite[0]);
+                    adjacencyTable.put(prerequisite[1], nextNodes);
+                }
             }
         }
 
@@ -45,6 +77,35 @@ public class Solution {
     private void dfs(int node) {
         if (!this.isPossible) {
             return;
+        }
+
+        if (nodeColor.get(node) == BLACK) {
+            return;
+        }
+        if (nodeColor.get(node) == GRAY) {
+            this.isPossible = false;
+            return;
+        }
+
+        nodeColor.put(node, GRAY);//将当前结点颜色设为GRAY
+
+        List<Integer> nextNodesOfCurrentNode = adjacencyTable.get(node);//获取当前结点的所有直接后继
+        if (nextNodesOfCurrentNode.size() == 0) {
+            //若当前结点的后继结点集合大小为0，说明其没有后继结点
+            nodeColor.put(node, BLACK);//将当前结点置为黑色
+            topologicalOrder.add(0, node);//将当前结点插入拓扑排序队首
+        } else {
+            //遍历当前结点的所有后继
+            for (int nextNode : nextNodesOfCurrentNode) {
+                dfs(nextNode);
+            }
+            //遍历完后继，检查是否出现环
+            if (!this.isPossible) {
+                return;//有环直接返回
+            }
+            //若无环：
+            nodeColor.put(node, BLACK);//将当前结点置为黑色
+            topologicalOrder.add(0, node);//将当前结点插入拓扑排序队首
         }
     }
 
@@ -93,5 +154,16 @@ public class Solution {
         } else {
             return new int[0];
         }
+    }
+
+    public static void main(String[] args) {
+        int[][] prerequisites = {{1, 0}, {2, 0}};
+
+        Solution solution = new Solution();
+        int[] result = solution.findOrder_dfsBased(3, prerequisites);
+        for (int n : result) {
+            System.out.print(n + "   ");
+        }
+        System.out.println();
     }
 }
