@@ -26,4 +26,18 @@ public class Solution {
         }
         return recursiveFibonacci(n - 1) + recursiveFibonacci(n - 2);
     }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        for (int i = 1; i <= 30; i++) {
+            System.out.print(solution.recursiveFibonacci(i) + "   ");
+        }
+        System.out.println();
+
+        for (int i = 1; i <= 30; i++) {
+            System.out.print(solution.dynamicFibonacci(i) + "   ");
+        }
+        System.out.println();
+    }
 }
