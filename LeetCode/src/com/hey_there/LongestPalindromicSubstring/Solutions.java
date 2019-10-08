@@ -50,7 +50,6 @@ public class Solutions {
         return s.substring(longestStart, longestEnd + 1);
     }
 
-
     public String longestPalindrome_DynamicProgramming(String s) {
         //检查参数是否合法
         if (null == s) {
@@ -62,7 +61,7 @@ public class Solutions {
 
         int sLength = s.length();
         int longestStart = 0, longestEnd = 0;//最长回文子串的起始字符和结束字符下标
-        boolean isPalindrome[][] = new boolean[sLength][sLength];
+        boolean[][] isPalindrome = new boolean[sLength][sLength];
 
         for (int i = 0; i < sLength; i++) {
             for (int j = 0; j < sLength; j++) {
@@ -81,13 +80,13 @@ public class Solutions {
                     }
                     continue;
                 }
-                isPalindrome[i][j] = false;//将长度＞2的子串标记初始化为false
+                isPalindrome[i][j] = false;//将长度大于2的子串以及i>j的情况初始化为false
             }
         }
 
         int subStringStart;
         int subStringLen = 3;
-        while (true) {
+        do {
             subStringStart = 0;
             while (subStringStart + subStringLen - 1 < sLength) {
                 isPalindrome[subStringStart][subStringStart + subStringLen - 1] =
@@ -102,10 +101,7 @@ public class Solutions {
                 subStringStart++;
             }
             subStringLen++;
-            if (subStringLen > sLength) {
-                break;
-            }
-        }
+        } while (subStringLen <= sLength);
 
         return s.substring(longestStart, longestEnd + 1);
     }
@@ -159,7 +155,7 @@ public class Solutions {
         return longestPalindromicSubstring;
     }
 
-    public boolean isStringPalindromic(String strToCheck) {
+    private boolean isStringPalindromic(String strToCheck) {
         boolean isStrPalindromic = true;
         int begin = 0, end = strToCheck.length() - 1;
         while (begin < end) {
