@@ -2,8 +2,52 @@ package com.hey_there.DynamicProgramming.LongestValidParentheses;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class Solution {
+    public int longestValidParentheses_DP(String s) {
+        int maxans = 0;
+        int[] dp = new int[s.length()];
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == ')') {
+                if (s.charAt(i - 1) == '(') {
+                    dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+                } else if (i - dp[i - 1] > 0 && s.charAt(i - dp[i - 1] - 1) == '(') {
+                    dp[i] = dp[i - 1] + ((i - dp[i - 1]) >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+                }
+                maxans = Math.max(maxans, dp[i]);
+            }
+        }
+        return maxans;
+    }
+
+    //暴力解法，遍历s的所有偶数长度的子串，性能很差
+    public int longestValidParentheses_searchAll(String s) {
+        int maxLen = 0;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i + 2; j <= s.length(); j += 2) {
+                if (isValid(s.substring(i, j))) {
+                    maxLen = Math.max(maxLen, j - i);
+                }
+            }
+        }
+        return maxLen;
+    }
+
+    private boolean isValid(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                stack.push('(');
+            } else if (!stack.empty() && stack.peek() == '(') {
+                stack.pop();
+            } else {
+                return false;
+            }
+        }
+        return stack.empty();
+    }
+
     public int longestValidParentheses(String s) {
         //s中可能有多个有效括号串，将其最后字符下标作为key，括号串长度作为value存入validParenthesesStrings
         HashMap<Integer, Integer> validParenthesesStrings = new HashMap<>();
@@ -86,6 +130,6 @@ public class Solution {
         System.out.println("Parentheses string length:" + s.length());
 
         Solution solution = new Solution();
-        System.out.println("Length of longest valid parentheses:  " + solution.longestValidParentheses(s));
+        System.out.println("Length of longest valid parentheses:  " + solution.longestValidParentheses_searchAll(s));
     }
 }
