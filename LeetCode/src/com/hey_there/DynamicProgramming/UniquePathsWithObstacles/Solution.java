@@ -5,7 +5,8 @@ public class Solution {
         int gridWidth = obstacleGrid[0].length;
         int gridHeight = obstacleGrid.length;
 
-        //首先处理特殊情况
+        /*首先处理特殊情况*/
+
         //若起始格子为障碍物，直接返回0
         if (obstacleGrid[0][0] == 1) {
             return 0;
@@ -29,7 +30,8 @@ public class Solution {
             return 1;
         }
 
-        //接下来处理普遍情况，即obstacleGrid有多行多列的情况
+        /*接下来处理普遍情况，即obstacleGrid有多行多列的情况*/
+
         //用一个数组存储从坐标(0,0)的格子到(i,j)格子的路径数
         int[][] pathsCount = new int[gridHeight][gridWidth];
 
