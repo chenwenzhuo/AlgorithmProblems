@@ -23,14 +23,14 @@ public class Solution {
             for (int j = 1; j <= lenWord2; j++) {
                 if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
                     /*若当前两子串的最后一个字符相同，当前编辑距离等于去掉结尾相同字符后子串的编辑距离。
-                    * 即，“good”串和“bad”串的编辑距离等于“goo”和“ba”的编辑距离*/
+                     * 即，“good”串和“bad”串的编辑距离等于“goo”和“ba”的编辑距离*/
                     editDistances[i][j] = editDistances[i - 1][j - 1];
                 } else {
                     /*若当前两子串的结尾字符不同，则有3种情况：
-                    * 1.向word1插入：editDistances[i][j] = editDistances[i][j-1] + 1
-                    * 2.从word1删除：editDistances[i][j] = editDistances[i-1][j] + 1
-                    * 3.替换word1元素：editDistances[i][j] = editDistances[i-1][j-1] + 1
-                    * editDistances[i][j]的最终取值应为其中的最小者*/
+                     * 1.向word1插入：editDistances[i][j] = editDistances[i][j-1] + 1
+                     * 2.从word1删除：editDistances[i][j] = editDistances[i-1][j] + 1
+                     * 3.替换word1元素：editDistances[i][j] = editDistances[i-1][j-1] + 1
+                     * editDistances[i][j]的最终取值应为其中的最小者*/
                     editDistances[i][j] = 1 + Math.min(editDistances[i - 1][j - 1],
                             Math.min(editDistances[i][j - 1], editDistances[i - 1][j]));
                 }
