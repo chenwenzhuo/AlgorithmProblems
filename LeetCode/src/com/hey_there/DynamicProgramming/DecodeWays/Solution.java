@@ -57,7 +57,6 @@ public class Solution {
                 ways[index] += ways[index - 2];
             }
         }
-
         /*for (int i = 0; i < sLen; i++) {
             System.out.print(ways[i] + "   ");
         }
