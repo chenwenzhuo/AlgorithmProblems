@@ -18,10 +18,54 @@ public class Solution {
         headNode.next = head;
 
         int batch = 1;
-
-        while (batch <= listLen) {
+        while (batch < listLen) {
+            System.out.println("batch:" + batch);
             ListNode prevFirstBatch = headNode;//当前正被操作的两个batch中，第一个batch的前一个结点,初始为头结点
             ListNode postSecondBatch;//当前正被操作的两个batch中，第二个batch的后一个结点
+
+            ListNode firstBatch = prevFirstBatch.next;//第一个batch
+            ListNode firstBatchTail = kPosAfter(firstBatch, batch - 1);//第一个batch的最后一个结点
+            ListNode secondBatch = firstBatchTail.next;//第二个batch
+            ListNode secondBatchTail = kPosAfter(secondBatch, batch - 1);//第二个batch的最后一个结点
+            if (secondBatchTail != null) {
+                postSecondBatch = secondBatchTail.next;
+            } else {
+                postSecondBatch = null;
+            }
+
+            while (firstBatch != null && secondBatch != null) {
+                //将两个batch从链表上取下
+                firstBatchTail.next = null;
+                if (secondBatchTail != null) {
+                    secondBatchTail.next = null;
+                }
+
+                ListNode mergedBatch = mergeLists(firstBatch, secondBatch);//合并两个batch
+                //将合并后的batch接回链表
+                prevFirstBatch.next = mergedBatch;
+                ListNode mergedBatchTail = kPosAfter(mergedBatch, batch * 2 - 1);
+                mergedBatchTail.next = postSecondBatch;
+
+                //更新引用值
+                prevFirstBatch = mergedBatchTail;
+
+                firstBatch = prevFirstBatch.next;
+                firstBatchTail = kPosAfter(firstBatch, batch - 1);
+
+                if (firstBatchTail != null) {
+                    secondBatch = firstBatchTail.next;
+                    secondBatchTail = kPosAfter(secondBatch, batch - 1);
+                } else {
+                    secondBatch = null;
+                    secondBatchTail = null;
+                }
+
+                if (secondBatchTail != null) {
+                    postSecondBatch = secondBatchTail.next;
+                } else {
+                    postSecondBatch = null;
+                }
+            }
 
             batch *= 2;
         }
@@ -53,6 +97,31 @@ public class Solution {
 
         head = mergeLists(leftHalf, rightHalf);//合并两链表
         return head;
+    }
+
+    //获得结点node后k个位置的结点引用
+    //k<=0时，直接返回node
+    //k>0时，若k大于node后的结点数，返回链表最后一个结点的引用
+    private ListNode kPosAfter(ListNode node, int k) {
+        if (node == null) {
+            return null;
+        }
+
+        ListNode prev = node;
+        node = node.next;
+        k--;
+
+        while (k > 0 && node != null) {
+            prev = prev.next;
+            node = node.next;
+            k--;
+        }
+
+        if (node != null) {
+            return node;
+        } else {
+            return prev;
+        }
     }
 
     private ListNode mergeLists(ListNode l1, ListNode l2) {
@@ -105,9 +174,17 @@ public class Solution {
         Solution solution = new Solution();
         head = solution.sortList_nonrecursiveMergeSort(head);
 
+        System.out.println(head);
         while (head != null) {
             System.out.println(head.val);
             head = head.next;
         }
+
+        /*ListNode ref = solution.kPosAfter(head, 80);
+        if (ref != null) {
+            System.out.println(ref.val);
+        }else {
+            System.out.println(ref);
+        }*/
     }
 }
