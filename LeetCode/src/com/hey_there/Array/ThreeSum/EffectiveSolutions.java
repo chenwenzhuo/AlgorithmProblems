@@ -1,4 +1,4 @@
-package com.hey_there.ThreeSum;
+package com.hey_there.Array.ThreeSum;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.hey_there.AddTwoNumbers;
+package com.hey_there.LinkedList.AddTwoNumbers;
 
 public class Solutions {
     /**

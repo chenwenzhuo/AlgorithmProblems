@@ -1,4 +1,4 @@
-package com.hey_there.TwoSum;
+package com.hey_there.Array.TwoSum;
 
 import java.util.HashMap;
 import java.util.Map;

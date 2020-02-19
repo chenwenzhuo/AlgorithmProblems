@@ -1,4 +1,4 @@
-package com.hey_there.ThreeSumClosest;
+package com.hey_there.Array.ThreeSumClosest;
 
 import java.util.Arrays;
 

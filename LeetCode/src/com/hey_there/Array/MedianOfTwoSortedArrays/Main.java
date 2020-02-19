@@ -1,4 +1,4 @@
-package com.hey_there.MedianOfTwoSortedArrays;
+package com.hey_there.Array.MedianOfTwoSortedArrays;
 
 public class Main {
 

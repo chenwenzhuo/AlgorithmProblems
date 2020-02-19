@@ -1,4 +1,4 @@
-package com.hey_there.ContainerWithMostWater;
+package com.hey_there.Array.ContainerWithMostWater;
 
 public class Solutions {
     /**
