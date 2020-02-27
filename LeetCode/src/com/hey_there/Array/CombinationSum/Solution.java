@@ -1,6 +1,7 @@
 package com.hey_there.Array.CombinationSum;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Solution {
@@ -10,28 +11,30 @@ public class Solution {
         if (candidates.length == 0) {
             return combinations;
         }
+        Arrays.sort(candidates);
         List<Integer> oneCombination = new ArrayList<>();
-        findCombinations(candidates, target, oneCombination);
+        findCombinations(candidates, 0, target, oneCombination);
         return combinations;
     }
 
-    private void findCombinations(int[] candidates, int target, List<Integer> tempComb) {
+    private void findCombinations(int[] candidates, int start, int target, List<Integer> tempComb) {
         if (target == 0) {
             List<Integer> oneComb = new ArrayList<>(tempComb);
             combinations.add(oneComb);
             return;
         }
 
-        for (int candidate : candidates) {
+        int len = candidates.length;
+        for (int i = start; i < len; i++) {
             int tempCombSize = tempComb.size();
-            if (target < candidate || (tempCombSize > 0 && candidate < tempComb.get(tempCombSize - 1))) {
+            if (target < candidates[i] || (tempCombSize > 0 && candidates[i] < tempComb.get(tempCombSize - 1))) {
                 continue;
             }
-            target -= candidate;
-            tempComb.add(candidate);
-            findCombinations(candidates, target, tempComb);
+            target -= candidates[i];
+            tempComb.add(candidates[i]);
+            findCombinations(candidates, i, target, tempComb);
 
-            target += candidate;
+            target += candidates[i];
             tempComb.remove(tempComb.size() - 1);
         }
     }
