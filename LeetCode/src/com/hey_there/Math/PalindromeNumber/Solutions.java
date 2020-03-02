@@ -1,4 +1,4 @@
-package com.hey_there.Palindrome_Number;
+package com.hey_there.Math.PalindromeNumber;
 
 
 public class Solutions {

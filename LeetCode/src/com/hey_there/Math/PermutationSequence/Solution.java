@@ -1,4 +1,4 @@
-package com.hey_there.PermutationSequence;
+package com.hey_there.Math.PermutationSequence;
 
 public class Solution {
     public String getPermutation(int n, int k) {

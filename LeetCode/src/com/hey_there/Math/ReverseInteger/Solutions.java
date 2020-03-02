@@ -1,4 +1,4 @@
-package com.hey_there.ReverseInteger;
+package com.hey_there.Math.ReverseInteger;
 
 import java.util.Stack;
 

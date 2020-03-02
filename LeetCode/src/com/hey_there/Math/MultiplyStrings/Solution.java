@@ -1,4 +1,4 @@
-package com.hey_there.MultiplyStrings;
+package com.hey_there.Math.MultiplyStrings;
 
 import java.util.ArrayList;
 import java.util.List;

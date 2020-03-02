@@ -1,4 +1,4 @@
-package com.hey_there.IntegerToRoman;
+package com.hey_there.Math.IntegerToRoman;
 
 public class Solutions {
     public String intToRoman(int num) {

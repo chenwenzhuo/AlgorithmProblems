@@ -1,4 +1,4 @@
-package com.hey_there.RomanToInteger;
+package com.hey_there.Math.RomanToInteger;
 
 import java.util.HashMap;
 

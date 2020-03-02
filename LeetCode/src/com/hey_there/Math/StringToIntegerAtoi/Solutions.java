@@ -1,4 +1,4 @@
-package com.hey_there.StringToIntegerAtoi;
+package com.hey_there.Math.StringToIntegerAtoi;
 
 public class Solutions {
     private String digits = "1234567890";//数字
