@@ -1,4 +1,4 @@
-package com.hey_there.RottingOranges;
+package com.hey_there.DailyProblems.RottingOranges;
 
 import java.util.ArrayDeque;
 import java.util.HashMap;
