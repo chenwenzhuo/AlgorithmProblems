@@ -45,6 +45,7 @@ public class Solution {
         return resultsArr;
     }
 
+    //2.双指针。solution2.png
     public static int[][] findContinuousSequence_2(int target) {
         Map<Integer, Integer> results = new LinkedHashMap<>();
         int start = 1, end = 2;
