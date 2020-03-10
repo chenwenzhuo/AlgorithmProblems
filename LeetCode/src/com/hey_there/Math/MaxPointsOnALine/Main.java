@@ -1,4 +1,4 @@
-package com.hey_there.MaxPointsOnALine;
+package com.hey_there.Math.MaxPointsOnALine;
 
 
 public class Main {
