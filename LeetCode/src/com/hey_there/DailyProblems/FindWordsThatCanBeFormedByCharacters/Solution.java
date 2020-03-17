@@ -59,7 +59,7 @@ public class Solution {
         int[] charsOccurrence = new int[26];
         //统计chars中所有字符的出现次数
         for (char ch : chars.toCharArray()) {
-            charsOccurrence[(int) (ch - 'a')]++;
+            charsOccurrence[ch - 'a']++;//不用手动强转为int
         }
 
         //遍历words数组中所有字符串
@@ -69,7 +69,7 @@ public class Solution {
             int[] charsInWordOccurrence = new int[26];
             //统计当前字符串word中所有字符的出现次数
             for (char chInWord : word.toCharArray()) {
-                int pos = (int) (chInWord - 'a');
+                int pos = chInWord - 'a';//不用手动强转为int
                 charsInWordOccurrence[pos]++;
                 //若word中某字符出现次数大于字母表中该字符的出现次数，则不能组成word
                 if (charsInWordOccurrence[pos] > charsOccurrence[pos]) {
