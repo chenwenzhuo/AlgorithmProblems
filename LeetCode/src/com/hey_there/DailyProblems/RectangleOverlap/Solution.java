@@ -60,7 +60,6 @@ public class Solution {
                 break;
             }
         }
-
         //计算大矩形中值为2的区域的面积
         int val2_area = (val2_bottomRight_x - val2_topLeft_x) * (val2_bottomRight_y - val2_topLeft_y);
         return val2_area != 0;
