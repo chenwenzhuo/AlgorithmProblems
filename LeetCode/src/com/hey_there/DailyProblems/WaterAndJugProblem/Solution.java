@@ -5,9 +5,6 @@ public class Solution {
         if (x + y < z) {
             return false;
         }
-        /*if ((x == 0 && y > 0) || (x > 0 && y == 0)) {
-            return z == 0;
-        }*/
         if (x == 0 || y == 0) {
             return z == 0;
         }
@@ -43,12 +40,6 @@ public class Solution {
                     smaller = remainder;
                 }
             } while (remainder != 0);
-        }
-
-        if (gcd == 0 && z > 0) {
-            return false;
-        } else if (gcd == 0 && z == 0) {
-            return true;
         }
         return z % gcd == 0;
     }
