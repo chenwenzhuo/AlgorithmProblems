@@ -78,12 +78,12 @@ public class Solution {
         Solution solution = new Solution();
         List<List<String>> results = solution.solveNQueens(5);
         System.out.println("num of results: " + results.size());
-        /*for (List<String> result : results) {
+        for (List<String> result : results) {
             System.out.println("[");
             for (String row : result) {
                 System.out.println(row);
             }
             System.out.println("]");
-        }*/
+        }
     }
 }
