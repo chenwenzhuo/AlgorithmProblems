@@ -1,4 +1,4 @@
-package com.hey_there.BacktrackAlgorithm.N_Queens;
+package com.hey_there.BacktrackAlgorithm.NQueens;
 
 import java.util.ArrayList;
 import java.util.List;
