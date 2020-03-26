@@ -1,4 +1,4 @@
-package com.hey_there.GeneratingParentheses;
+package com.hey_there.BacktrackAlgorithm.GeneratingParentheses;
 
 import java.util.ArrayList;
 import java.util.List;
