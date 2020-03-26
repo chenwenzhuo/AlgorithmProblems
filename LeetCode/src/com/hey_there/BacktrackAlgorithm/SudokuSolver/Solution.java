@@ -92,13 +92,6 @@ public class Solution {
                 {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
                 {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
                 {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
-        for (char[] row : board) {
-            for (char r : row) {
-                System.out.print(r + "  ");
-            }
-            System.out.println();
-        }
-        System.out.println("-------------------------");
 
         Solution solution = new Solution();
         solution.solveSudoku(board);
