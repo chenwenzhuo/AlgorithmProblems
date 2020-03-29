@@ -2,9 +2,12 @@ package com.hey_there.DynamicProgramming.EditDistance;
 
 public class Solution {
     public int minDistance(String word1, String word2) {
-        //两个字符串的长度
-        int lenWord1 = word1.length();
-        int lenWord2 = word2.length();
+        //将两字符串转换为数组
+        char[] array_word1 = word1.toCharArray();
+        char[] array_word2 = word2.toCharArray();
+        //两字符串长度
+        int lenWord1 = array_word1.length;
+        int lenWord2 = array_word2.length;
 
         /*使用一个数组来存储word1的子串到word2的子串的编辑距离。
          * editDistances[i][j]表示word1的前i个字符的子串到word2的前j个字符的子串的编辑距离。
@@ -21,7 +24,7 @@ public class Solution {
 
         for (int i = 1; i <= lenWord1; i++) {
             for (int j = 1; j <= lenWord2; j++) {
-                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                if (array_word1[i - 1] == array_word2[j - 1]) {
                     /*若当前两子串的最后一个字符相同，当前编辑距离等于去掉结尾相同字符后子串的编辑距离。
                      * 即，“good”串和“bad”串的编辑距离等于“goo”和“ba”的编辑距离*/
                     editDistances[i][j] = editDistances[i - 1][j - 1];
