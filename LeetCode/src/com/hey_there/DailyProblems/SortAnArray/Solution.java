@@ -124,7 +124,7 @@ public class Solution {
         int mid = (start + end) / 2;
         recursiveMergingSort(array, assist, start, mid);
         recursiveMergingSort(array, assist, mid + 1, end);
-        //合并两路递归的结果
+        //归并两路递归的结果
         int low = start, high = mid + 1;
         int assistIndex = start;
         while (low <= mid && high <= end) {
@@ -147,7 +147,7 @@ public class Solution {
             high++;
             assistIndex++;
         }
-        //将assist数组中合并后的结果拷贝到原数组中
+        //将assist数组中归并后的结果拷贝到原数组中
         System.arraycopy(assist, start, array, start, end - start + 1);
     }
 
