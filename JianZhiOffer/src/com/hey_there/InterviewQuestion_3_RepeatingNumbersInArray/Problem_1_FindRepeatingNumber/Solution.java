@@ -18,15 +18,15 @@ public class Solution {
     }
 
     /* 由于nums数组中数字范围为0~n-1，
-     * 所以可将nums中下标为i的数字n映射到另一个数组hash的下标为n的位置，
+     * 所以可将nums中下标为i的数字n映射到另一个数组assist的下标为n的位置，
      * 两个数字映射到同一个位置即为重复
      * 时间复杂度O(n)，空间复杂度O(n)*/
-    public int findRepeating_hash(int[] nums) {
-        int[] hash = new int[nums.length];
-        Arrays.fill(hash, -1);//使用无效数字-1来初始化hash数组
+    public int findRepeating_assistArray(int[] nums) {
+        int[] assist = new int[nums.length];
+        Arrays.fill(assist, -1);//使用无效数字-1来初始化hash数组
         for (int n : nums) {
-            if (hash[n] != n) {
-                hash[n] = n;
+            if (assist[n] != n) {
+                assist[n] = n;
             } else {
                 return n;
             }
