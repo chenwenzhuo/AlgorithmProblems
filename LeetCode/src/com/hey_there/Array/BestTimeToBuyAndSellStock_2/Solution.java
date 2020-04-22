@@ -1,4 +1,4 @@
-package com.hey_there.DynamicProgramming.BestTimeToBuyAndSellStock_2;
+package com.hey_there.Array.BestTimeToBuyAndSellStock_2;
 
 public class Solution {
     public int maxProfit(int[] prices) {
