@@ -1,4 +1,4 @@
-package com.hey_there.WeeklyCompetition.ReformatString;
+package com.hey_there.WeeklyCompetition._2020_4_19.ReformatString;
 
 import java.util.*;
 

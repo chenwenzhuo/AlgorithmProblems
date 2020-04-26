@@ -1,4 +1,4 @@
-package com.hey_there.WeeklyCompetition.MinimumNumberOfFrogsCroaking;
+package com.hey_there.WeeklyCompetition._2020_4_19.MinimumNumberOfFrogsCroaking;
 
 import java.util.ArrayList;
 import java.util.List;
