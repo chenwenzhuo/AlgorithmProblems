@@ -9,11 +9,12 @@ public class Solution {
 
         int index = 0;
         while (index < len - 1) {
-            //在当前位置，走一步再走一步后能到达的最远位置
-            int farthestCapable = -1;
+            //在当前位置，走两步后能到达的最远位置
+            int farthestWith2Steps = -1;
             int nextStepLen = 1;//下一步要走的距离长度(根据题目条件，至少要走一步)
 
             int tempNextStepLen = 1;
+            //枚举在当前位置能走的所有距离，从1到nums[index]
             while (tempNextStepLen <= nums[index]) {
                 //检查从当前位置能否一步到达最终位置
                 if (index + tempNextStepLen >= len - 1) {
@@ -21,20 +22,22 @@ public class Solution {
                     totalSteps++;
                     return totalSteps;
                 }
-                //不能一步到达则计算走一步再走一步的最远距离
-                if (index + tempNextStepLen < len &&
-                        index + tempNextStepLen + nums[index + tempNextStepLen] > farthestCapable) {
-                    farthestCapable = index + tempNextStepLen + nums[index + tempNextStepLen];
+                //不能一步到达则计算走两步的最远距离
+                int tempFarthest = index + tempNextStepLen + nums[index + tempNextStepLen];
+                if (index + tempNextStepLen < len && tempFarthest > farthestWith2Steps) {
+                    //找到一种走法能到达更远的位置，则更新变量值
+                    farthestWith2Steps = tempFarthest;
                     nextStepLen = tempNextStepLen;
                 }
                 tempNextStepLen++;
             }
-            index += nextStepLen;
-            totalSteps++;
+            index += nextStepLen;//向后走一步
+            totalSteps++;//总步数增加
         }
         return totalSteps;
     }
 
+    //能通过所有测试用例但超时
     public int jump_my_2(int[] nums) {
         int lenNums = nums.length;
         //dp[i]表示到达下标为i的位置需要的最少步数
