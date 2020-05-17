@@ -114,44 +114,42 @@ public class Solution {
         int[] topologicalOrder = new int[numCourses];//图的拓扑排序序列
         int[] inDegrees = new int[numCourses];//用数组存储所有结点的入度
         //统计各结点的入度
-        for (int[] cp : prerequisites) {
-            inDegrees[cp[0]]++;
+        for (int[] pre : prerequisites) {
+            inDegrees[pre[0]]++;
         }
-
         //用队列存储所有入度为0的结点
-        LinkedList<Integer> queue = new LinkedList<>();
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
         //将入度为0的结点入队
         for (int i = 0; i < numCourses; i++) {
             if (inDegrees[i] == 0) {
-                queue.addLast(i);
+                queue.offer(i);
             }
         }
-
         int index = 0;
         //每次获取一个0入度的结点，从图中去掉它，并更新其他结点的入度值
         while (!queue.isEmpty()) {
-            Integer pre = queue.removeFirst();//获取一个0入度的结点
+            int ZIDNode = queue.poll();//获取一个0入度的结点
             numCourses--;//将其从图中去掉
             //将其加入topologicalOrder
-            topologicalOrder[index] = pre;
+            topologicalOrder[index] = ZIDNode;
             index++;
-
             //更新其他结点的入度
-            for (int[] req : prerequisites) {//遍历图中所有边
-                if (req[1] != pre) {
-                    continue;//当前边的前驱结点不是pre，不做操作，继续遍历
+            for (int[] pre : prerequisites) {//遍历图中所有边
+                if (pre[1] != ZIDNode) {
+                    continue;//当前边的前驱结点不是ZIDNode，不做操作，继续遍历
                 }
-                //若当前边的前驱结点是pre
+                //若当前边的前驱结点是ZIDNode
                 //先将后继结点的入度减1，再判断减1后是否为0
-                if (--inDegrees[req[0]] == 0) {
-                    queue.add(req[0]);//若减1后为0，将此结点加入0入度结点的队列
+                if (--inDegrees[pre[0]] == 0) {
+                    queue.offer(pre[0]);//若减1后为0，将此结点加入0入度结点的队列
                 }
             }
         }
-
         if (numCourses == 0) {
+            //图中没有剩余节点，则返回topologicalOrder数组
             return topologicalOrder;
         } else {
+            //有剩余节点则返回一个空数组
             return new int[0];
         }
     }
