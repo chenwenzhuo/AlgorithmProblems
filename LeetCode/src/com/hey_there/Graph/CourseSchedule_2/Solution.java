@@ -126,7 +126,7 @@ public class Solution {
             }
         }
         int index = 0;
-        //每次获取一个0入度的结点，从图中去掉它，并更新其他结点的入度值
+        //每次获取一个0入度的结点，从图中去掉它，并更新其他结点的入度
         while (!queue.isEmpty()) {
             int ZIDNode = queue.poll();//获取一个0入度的结点
             numCourses--;//将其从图中去掉
