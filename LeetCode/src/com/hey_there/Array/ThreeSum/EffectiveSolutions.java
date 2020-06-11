@@ -7,12 +7,10 @@ import java.util.List;
 public class EffectiveSolutions {
     public List<List<Integer>> threeSum_LRPointer(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-
         //处理无效输入
-        if (null == nums || nums.length < 3) {
+        if (nums == null || nums.length < 3) {
             return ans;
         }
-
         Arrays.sort(nums);//对数组排序
         int length = nums.length;//获取数组长度
 
@@ -24,16 +22,17 @@ public class EffectiveSolutions {
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-
             int left = i + 1;
             int right = length - 1;
-
             while (left < right) {
                 int threeSum = nums[i] + nums[left] + nums[right];//计算三数之和
-
                 if (0 == threeSum) {//若和为0
-                    ans.add(Arrays.asList(nums[i], nums[left], nums[right]));//加入答案集合
-
+                    //加入答案集合
+                    List<Integer> oneAns = new ArrayList<>();
+                    oneAns.add(nums[i]);
+                    oneAns.add(nums[left]);
+                    oneAns.add(nums[right]);
+                    ans.add(oneAns);
                     //排除重复解
                     while (left < right && nums[left] == nums[left + 1]) {
                         left++;
@@ -50,8 +49,6 @@ public class EffectiveSolutions {
                 }
             }
         }
-
-
         return ans;
     }
 }
