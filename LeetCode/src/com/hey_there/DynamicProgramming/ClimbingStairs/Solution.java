@@ -4,19 +4,26 @@ public class Solution {
     public int climbStairs(int n) {
         if (n == 1) {
             return 1;
+        } else if (n == 2) {
+            return 2;
         }
-
-        //数组中第i个元素表示爬到第i级台阶的方式数
-        int[] waysOfClimbing = new int[n];
-
-        //前两个元素直接初始化
-        waysOfClimbing[0] = 1;
-        waysOfClimbing[1] = 2;
-
+        //到达当前台阶的方式数
+        int waysToCurStair = 0;
+        //到达前一级台阶的方式数
+        int prevOne = 2;
+        //到达前两级台阶的方式数
+        int prevTwo = 1;
         for (int i = 2; i < n; i++) {
-            waysOfClimbing[i] = waysOfClimbing[i - 1] + waysOfClimbing[i - 2];
+            waysToCurStair = prevOne + prevTwo;
+            prevTwo = prevOne;
+            prevOne = waysToCurStair;
         }
+        return waysToCurStair;
+    }
 
-        return waysOfClimbing[n - 1];
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int ans = solution.climbStairs(4);
+        System.out.println(ans);
     }
 }
