@@ -1,7 +1,5 @@
 package com.hey_there.DailyProblems.June.LongestCommonPrefix;
 
-import com.hey_there.DynamicProgramming.ClimbingStairs.Solution;
-
 public class Solutions {
     public String longestCommonPrefix_1(String[] strs) {
         int strsLength = strs.length;//字符数组的长度
