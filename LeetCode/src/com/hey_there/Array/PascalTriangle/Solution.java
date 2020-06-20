@@ -10,23 +10,27 @@ public class Solution {
         if (numRows == 0) {
             return triangle;
         } else if (numRows == 1) {
-            List<Integer> firstRow = new ArrayList<>();
-            firstRow.add(1);
+            List<Integer> firstRow = new ArrayList<Integer>() {{
+                add(1);
+            }};
             triangle.add(firstRow);
             return triangle;
         } else if (numRows == 2) {
-            List<Integer> firstRow = new ArrayList<>();
-            List<Integer> secondRow = new ArrayList<>();
-            firstRow.add(1);
-            secondRow.add(1);
-            secondRow.add(1);
+            List<Integer> firstRow = new ArrayList<Integer>() {{
+                add(1);
+            }};
+            List<Integer> secondRow = new ArrayList<Integer>() {{
+                add(1);
+                add(1);
+            }};
             triangle.add(firstRow);
             triangle.add(secondRow);
             return triangle;
         }
         //手动添加第一行
-        List<Integer> firstRow = new ArrayList<>();
-        firstRow.add(1);
+        List<Integer> firstRow = new ArrayList<Integer>() {{
+            add(1);
+        }};
         triangle.add(firstRow);
 
         int rowsToGen = numRows - 1;//还需要生成的行数
