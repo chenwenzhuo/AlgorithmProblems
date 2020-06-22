@@ -9,35 +9,29 @@ public class Solution {
             return 0;
         }
         HashMap<String, Integer> pathLens = new HashMap<>();//记录从beginWord到作为key的word的路径长度
-        HashSet<String> visitedWords = new HashSet<>();//已访问过的节点集合
         ArrayDeque<String> queue = new ArrayDeque<>();//队列辅助广度优先搜索
         pathLens.put(beginWord, 0);//beginWord到它本身路径长度为0
-        visitedWords.add(beginWord);//将beginWord标记为已访问
+        wordList.remove(beginWord);
         queue.offer(beginWord);//beginWord作为广度优先搜索的起始节点
         //广度优先搜索
-        int shortest = -1;
+        int shortest = -1;//shortest初值-1为无效值
         while (!queue.isEmpty()) {
             String curWord = queue.poll();
             Iterator<String> iterator = wordList.iterator();
             while (iterator.hasNext()) {
                 String nextWord = iterator.next();
-                if (visitedWords.contains(nextWord)) {
-                    continue;//跳过已访问的节点
-                }
                 //检查curWord和nextWord之间的差异是否是1个字符
                 boolean diffIsOneChar = oneCharDifferent(curWord, nextWord);
                 if (diffIsOneChar && nextWord.equals(endWord)) {
-                    //当nextWord是endWord时，尝试更新最短路径值
-                    //shortest = Math.min(shortest, pathLens.get(curWord) + 1);
-                    shortest = pathLens.get(curWord) + 1;
-                    queue.clear();
-                    break;
+                    //当nextWord是endWord时，表示已找到从beginWord到endWord的最短路径
+                    shortest = pathLens.get(curWord) + 1;//为shortest赋值
+                    queue.clear();//清空队列，方便退出外层循环
+                    break;//退出内层循环
                 } else if (diffIsOneChar) {
                     //记录nextWord到beginWord的路径长度
                     pathLens.put(nextWord, pathLens.get(curWord) + 1);
-                    visitedWords.add(nextWord);//将nextWord标记为已访问
                     queue.offer(nextWord);//nextWord入队
-                    //将nextWord从wordList中移除
+                    //将nextWord从wordList中移除，避免多次访问同一节点
                     iterator.remove();
                 }
             }
