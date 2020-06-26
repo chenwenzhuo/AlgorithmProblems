@@ -113,23 +113,25 @@ public class Solution {
         return nums;
     }
 
-    public int[] sortArray_mergingSort_recursive(int[] nums) {
+    public int[] sortArray_mergeSort_recursive(int[] nums) {
         int len = nums.length;
         int[] assist = new int[len];
-        recursiveMergingSort(nums, assist, 0, nums.length - 1);
+        recursiveMergeSort(nums, assist, 0, nums.length - 1);
         return assist;
     }
 
-    private void recursiveMergingSort(int[] array, int[] assist, int start, int end) {
+    private void recursiveMergeSort(int[] array, int[] assist, int start, int end) {
         if (start == end) {
             return;
         }
         int mid = (start + end) / 2;
-        recursiveMergingSort(array, assist, start, mid);
-        recursiveMergingSort(array, assist, mid + 1, end);
+        //递归排序两个子序列
+        recursiveMergeSort(array, assist, start, mid);
+        recursiveMergeSort(array, assist, mid + 1, end);
         //归并两路递归的结果
         int low = start, high = mid + 1;
         int assistIndex = start;
+        //当low和high在两段序列中都未走到头时，取较小者填入assist数组中
         while (low <= mid && high <= end) {
             if (array[low] < array[high]) {
                 assist[assistIndex] = array[low];
@@ -140,6 +142,8 @@ public class Solution {
             }
             assistIndex++;
         }
+        //当low或high在各自的子序列中走到头时，分开处理另一个序列的剩余部分
+        //以下两个循环只会执行其中一个
         while (low <= mid) {
             assist[assistIndex] = array[low];
             low++;
@@ -154,24 +158,24 @@ public class Solution {
         System.arraycopy(assist, start, array, start, end - start + 1);
     }
 
-    public int[] sortArray_mergingSort_nonrecursive(int[] nums) {
+    public int[] sortArray_mergeSort_nonrecursive(int[] nums) {
         int len = nums.length;
         int[] assist = new int[len];
-        int step = 2;
+        int step = 2;//进行归并的步长
         int stepStart;
-
         while (step <= len) {
             stepStart = 0;
             //以step为步长进行合并
             while (stepStart + step <= len) {
+                //每次调用merge方法，都会使[stepStart,stepStart + step - 1]闭区间内的数字有序
                 merge(nums, assist, stepStart, stepStart + step / 2 - 1, stepStart + step - 1);
                 stepStart += step;
             }
-            //处理残余部分
+            //数组尾部可能存在不足一个步长的部分，单独对其进行排序
             if (stepStart <= len - 1) {
                 merge(nums, assist, stepStart, stepStart + step / 2 - 1, len - 1);
             }
-            step *= 2;
+            step *= 2;//步长以2的幂增长
         }
         //最后再从头到尾合并一遍
         merge(nums, assist, 0, step / 2 - 1, len - 1);
