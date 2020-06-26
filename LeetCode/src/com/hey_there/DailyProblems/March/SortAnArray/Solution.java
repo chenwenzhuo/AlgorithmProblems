@@ -93,17 +93,20 @@ public class Solution {
 
     public int[] sortArray_shellSort(int[] nums) {
         int len = nums.length;
-        int increment = len;
-        while (increment > 1) {
-            increment /= 2;
-            for (int i = increment; i < len; i++) {
-                if (nums[i] < nums[i - increment]) {
-                    int temp = nums[i];
+        int inc = len;//排序增量
+        while (inc > 1) {
+            inc /= 2;//每趟排序都将增量缩小
+            //逐个将nums[i]与nums[i - inc]比较
+            for (int i = inc; i < len; i++) {
+                //若后面的比前面的小
+                if (nums[i] < nums[i - inc]) {
+                    int temp = nums[i];//暂存较小的这个数
                     int j;
-                    for (j = i - increment; j >= 0 && nums[j] > temp; j -= increment) {
-                        nums[j + increment] = nums[j];
+                    //以inc为步长向前，不断交换，找到temp的正确位置
+                    for (j = i - inc; j >= 0 && nums[j] > temp; j -= inc) {
+                        nums[j + inc] = nums[j];
                     }
-                    nums[j + increment] = temp;
+                    nums[j + inc] = temp;//将temp存入
                 }
             }
         }
