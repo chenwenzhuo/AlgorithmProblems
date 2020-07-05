@@ -1,7 +1,5 @@
 package com.hey_there.RemoveDuplicatesFromSortedList;
 
-import com.hey_there.LinkedList.ListNode;
-
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         //给原链表一个引用，方便操作

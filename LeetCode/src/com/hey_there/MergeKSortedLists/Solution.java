@@ -1,7 +1,5 @@
 package com.hey_there.MergeKSortedLists;
 
-import com.hey_there.LinkedList.ListNode;
-
 public class Solution {
     /*将合并 k 个链表转化成合并两个链表的问题
     * 使用两个链表数组 prevLists 和 nextLists

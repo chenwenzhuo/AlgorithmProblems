@@ -1,7 +1,5 @@
 package com.hey_there.ReverseLinkedList;
 
-import com.hey_there.LinkedList.ListNode;
-
 public class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode reversedHead = new ListNode(-1);

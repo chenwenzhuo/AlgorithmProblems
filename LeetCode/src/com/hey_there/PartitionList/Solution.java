@@ -1,7 +1,5 @@
 package com.hey_there.PartitionList;
 
-import com.hey_there.LinkedList.ListNode;
-
 public class Solution {
     public ListNode partition(ListNode head, int x) {
         //初始化两个链表的头结点，用来保存值小于x的结点和值大于等于x的结点

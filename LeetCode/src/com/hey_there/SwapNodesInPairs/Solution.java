@@ -1,7 +1,5 @@
 package com.hey_there.SwapNodesInPairs;
 
-import com.hey_there.LinkedList.ListNode;
-
 public class Solution {
     public ListNode swapPairs_nonRecursive(ListNode head) {
         //处理特殊值

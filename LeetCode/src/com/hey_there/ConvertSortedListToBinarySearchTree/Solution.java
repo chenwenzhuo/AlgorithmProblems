@@ -1,6 +1,5 @@
 package com.hey_there.ConvertSortedListToBinarySearchTree;
 
-import com.hey_there.LinkedList.ListNode;
 
 import java.util.ArrayList;
 import java.util.List;

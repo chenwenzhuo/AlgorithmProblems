@@ -1,6 +1,5 @@
 package com.hey_there.InsersionSortList;
 
-import com.hey_there.LinkedList.ListNode;
 
 public class Solution {
     //两层嵌套循环算法

@@ -1,7 +1,5 @@
 package com.hey_there.ReverseNodesInKGroup;
 
-import com.hey_there.LinkedList.ListNode;
-
 public class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
         if (head == null) {

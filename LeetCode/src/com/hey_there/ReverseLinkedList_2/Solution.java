@@ -1,7 +1,5 @@
 package com.hey_there.ReverseLinkedList_2;
 
-import com.hey_there.LinkedList.ListNode;
-
 public class Solution {
     public ListNode reverseBetween(ListNode head, int m, int n) {
         //若反转的起始点和结束点相同，无需反转，返回原链表

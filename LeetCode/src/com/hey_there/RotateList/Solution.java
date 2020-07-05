@@ -1,7 +1,5 @@
 package com.hey_there.RotateList;
 
-import com.hey_there.LinkedList.ListNode;
-
 public class Solution {
     public ListNode rotateRight(ListNode head, int k) {
         //若链表长度为0或1，直接返回原链表

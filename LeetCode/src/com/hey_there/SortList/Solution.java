@@ -1,7 +1,5 @@
 package com.hey_there.SortList;
 
-import com.hey_there.LinkedList.ListNode;
-
 public class Solution {
     //非递归的归并排序
     public ListNode sortList_nonrecursiveMergeSort(ListNode head) {

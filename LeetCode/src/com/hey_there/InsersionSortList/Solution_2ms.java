@@ -1,6 +1,5 @@
 package com.hey_there.InsersionSortList;
 
-import com.hey_there.LinkedList.ListNode;
 
 //执行时间2ms的算法
 public class Solution_2ms {
