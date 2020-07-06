@@ -12,7 +12,7 @@ public class Solution {
         }
 
         //计算最小数的下标
-        int rotateIndex = findRotateIndex(nums, target);
+        int rotateIndex = findRotateIndex(nums);
 
         //以rotateIndex分界，二分搜索两侧数组
         int leftIndex = binarySearch(nums, 0, rotateIndex - 1, target);
@@ -26,7 +26,7 @@ public class Solution {
         return -1;//若都未找到，返回-1
     }
 
-    public int findRotateIndex(int[] nums, int target) {
+    public int findRotateIndex(int[] nums) {
         int len = nums.length;
         int left = 0, right = len - 1;
 
