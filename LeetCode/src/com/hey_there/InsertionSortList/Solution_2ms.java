@@ -1,4 +1,4 @@
-package com.hey_there.InsersionSortList;
+package com.hey_there.InsertionSortList;
 
 
 //执行时间2ms的算法

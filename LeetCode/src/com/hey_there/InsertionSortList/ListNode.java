@@ -1,4 +1,4 @@
-package com.hey_there.InsersionSortList;
+package com.hey_there.InsertionSortList;
 
 public class ListNode {
     public int val;
