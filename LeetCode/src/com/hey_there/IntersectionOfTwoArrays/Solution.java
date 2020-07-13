@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class Solution {
-    public int[] intersect_1(int[] nums1, int[] nums2) {
+    public int[] intersection_1(int[] nums1, int[] nums2) {
         int len1 = nums1.length, len2 = nums2.length;
         Arrays.sort(nums1);
         Arrays.sort(nums2);
@@ -35,7 +35,7 @@ public class Solution {
         return intersectionArr;
     }
 
-    public int[] intersect_2(int[] nums1, int[] nums2) {
+    public int[] intersection_2(int[] nums1, int[] nums2) {
         HashSet<Integer> set1 = new HashSet<>();
         HashSet<Integer> set2 = new HashSet<>();
         for (int n : nums1) {
