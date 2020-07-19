@@ -1,7 +1,6 @@
 package com.hey_there.InterviewProblem_6_PrintListFromTail2Head;
 
 import java.util.ArrayDeque;
-import java.util.List;
 
 public class Solution {
     //遍历链表，将节点值压入栈中，再从栈中弹出节点值
