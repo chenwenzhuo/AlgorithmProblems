@@ -19,7 +19,7 @@ public class Solution {
         return reversed;
     }
 
-    //遍历链表，将结点值存入数组，再反转数组
+    //遍历链表，将结点值从尾到头存入数组
     public int[] reversePrint_2(ListNode head) {
         //计算链表长度
         int listLen = 0;
@@ -31,19 +31,10 @@ public class Solution {
         //将结点值存入数组
         int[] resArr = new int[listLen];
         ref = head;
-        int idx = 0;
+        int idx = listLen - 1;
         while (ref != null) {
-            resArr[idx++] = ref.val;
+            resArr[idx--] = ref.val;
             ref = ref.next;
-        }
-        //反转数组
-        int left = 0, right = listLen - 1;
-        while (left < right) {
-            int tmp = resArr[left];
-            resArr[left] = resArr[right];
-            resArr[right] = tmp;
-            left++;
-            right--;
         }
         return resArr;
     }
