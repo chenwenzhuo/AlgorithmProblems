@@ -1,4 +1,4 @@
-package com.hey_there.InterviewQuestion_3_RepeatingNumbersInArray.Problem_1_FindRepeatingNumber;
+package com.hey_there.InterviewProblem_3_RepeatingNumbersInArray.Problem_1_FindRepeatingNumber;
 
 import java.util.Arrays;
 
