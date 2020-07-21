@@ -3,25 +3,27 @@ package com.hey_there.WordSearch;
 import java.util.ArrayDeque;
 
 public class Solution {
-    //栈用来存储搜索路径
-    private ArrayDeque<Integer> stack = new ArrayDeque<>();
-    //右、下、左、上四个搜索方向的坐标增量
-    int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     private char[][] board;
-    int rows_board;
-    int columns_board;
-    int len_word;
-    char[] chs_word;
+    private char[] chs_word;
+    private int bRows;
+    private int bCols;
+    private int len_word;
+    //栈用来存储搜索路径
+    private ArrayDeque<Integer> stack;
+    //右、下、左、上四个搜索方向的坐标增量
+    private int[][] directions;
 
     public boolean exist(char[][] board, String word) {
         this.board = board;
-        this.rows_board = board.length;
-        this.columns_board = board[0].length;
-        this.len_word = word.length();
         this.chs_word = word.toCharArray();
+        this.bRows = board.length;
+        this.bCols = board[0].length;
+        this.len_word = word.length();
+        this.stack = new ArrayDeque<>();
+        this.directions = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-        for (int r = 0; r < rows_board; r++) {
-            for (int c = 0; c < columns_board; c++) {
+        for (int r = 0; r < bRows; r++) {
+            for (int c = 0; c < bCols; c++) {
                 boolean success = backtrackSearch(r, c, 0);
                 if (success) {
                     return true;
@@ -48,16 +50,16 @@ public class Solution {
             return true;
         }
         //将坐标(startX,startY)在board中的顺序位置入栈
-        stack.push(startX * columns_board + startY);
+        stack.push(startX * bCols + startY);
         //搜索四个方向
         for (int i = 0; i < 4; i++) {
             //计算当前方向上的下一个坐标
             int nextX = startX + directions[i][0];
             int nextY = startY + directions[i][1];
             //下一个坐标越界或已在栈中则跳过
-            if (nextX < 0 || nextX >= rows_board ||
-                    nextY < 0 || nextY >= columns_board ||
-                    stack.contains(nextX * columns_board + nextY)) {
+            if (nextX < 0 || nextX >= bRows ||
+                    nextY < 0 || nextY >= bCols ||
+                    stack.contains(nextX * bCols + nextY)) {
                 continue;
             }
             //下一个坐标不在栈中，向下搜索
@@ -75,12 +77,21 @@ public class Solution {
     public static void main(String[] args) {
         /*char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
         String word = "ABCB";*/
-        char[][] board = {
+        /*char[][] board = {
                 {'A', 'B', 'C', 'D', 'E'},
                 {'T', 'S', 'R', 'Q', 'F'},
                 {'M', 'N', 'O', 'P', 'G'},
                 {'L', 'K', 'J', 'I', 'H'}};
-        String word = "ABCDEFGHIJKLMNOPQRST";
+        String word = "ABCDEFGHIJKLMNOPQRST";*/
+        char[][] board = {
+                {'b', 'a', 'a', 'b', 'a', 'b'},
+                {'a', 'b', 'a', 'a', 'a', 'a'},
+                {'a', 'b', 'a', 'a', 'a', 'b'},
+                {'a', 'b', 'a', 'b', 'b', 'a'},
+                {'a', 'a', 'b', 'b', 'a', 'b'},
+                {'a', 'a', 'b', 'b', 'b', 'a'},
+                {'a', 'a', 'b', 'a', 'a', 'b'}};
+        String word = "aabbbbabbaababaaaabababbaaba";
         Solution solution = new Solution();
         boolean success = solution.exist(board, word);
         System.out.println(success);
