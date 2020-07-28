@@ -1,4 +1,4 @@
-package com.hey_there.InterviewProblem_32_BinaryTreeLevelOrderTraverse;
+package com.hey_there.InterviewProblem_32_BinaryTreeLevelOrderTraverse.Problem_2_Return2DList;
 
 public class TreeNode {
     int val;
