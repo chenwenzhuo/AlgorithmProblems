@@ -1,4 +1,4 @@
-package com.hey_there.InterviewProblem_29_MinStack;
+package com.hey_there.InterviewProblem_30_MinStack;
 
 import java.util.ArrayDeque;
 import java.util.PriorityQueue;

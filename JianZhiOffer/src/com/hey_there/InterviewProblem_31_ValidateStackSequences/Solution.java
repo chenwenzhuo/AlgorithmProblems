@@ -1,4 +1,4 @@
-package com.hey_there.InterviewProblem_30_ValidateStackSequences;
+package com.hey_there.InterviewProblem_31_ValidateStackSequences;
 
 import java.util.ArrayDeque;
 
