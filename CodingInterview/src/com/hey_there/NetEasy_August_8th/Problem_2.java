@@ -1,5 +1,7 @@
 package com.hey_there.NetEasy_August_8th;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -21,13 +23,24 @@ public class Problem_2 {
             set.add(inputNums[i]);
         }
 
-        int[] otherNums = new int[n - m];
+        Integer[] otherNums = new Integer[n - m];
         int counter = 1;
         for (int i = 0; i < otherNums.length; i++) {
             while (set.contains(counter) && counter <= n) counter++;
             otherNums[i] = counter;
             counter++;
         }
+        Arrays.sort(otherNums, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer n1, Integer n2) {
+                String n1_str = String.valueOf(n1);
+                String n2_str = String.valueOf(n2);
+                String n1_n2_str = n1_str + n2_str;
+                String n2_n1_str = n2_str + n1_str;
+                return n1_n2_str.compareTo(n2_n1_str);
+            }
+        });
+
 
         StringBuilder builder = new StringBuilder();
         int idx1 = 0;//inputNums数组的下标
@@ -61,29 +74,10 @@ public class Problem_2 {
 
     //比较两个数的字典序，返回true表示n1在前，false表示n2在前
     private static boolean compareTwoNum(int n1, int n2) {
-        //计算n1和n2各自是几位数
-        int n1Digits = ((int) Math.log10(n1)) + 1;
-        int n2Digits = ((int) Math.log10(n2)) + 1;
-        //用数组存储n1和n2的各个数位上的数字
-        int[] n1Arr = new int[n1Digits];
-        int[] n2Arr = new int[n2Digits];
-        for (int i = n1Digits - 1; i >= 0; i--) {
-            n1Arr[i] = n1 % 10;
-            n1 /= 10;
-        }
-        for (int i = n2Digits - 1; i >= 0; i--) {
-            n2Arr[i] = n2 % 10;
-            n2 /= 10;
-        }
-        //比较字典序
-        int idx = 0;
-        while (idx < n1Digits && idx < n2Digits) {
-            if (n1Arr[idx] < n2Arr[idx]) return true;
-            else if (n1Arr[idx] > n2Arr[idx]) return false;
-            idx++;
-        }
-        //比较完其中一个数的所有位都没得出结果
-        //则比较哪个数长度更长
-        return n1Digits < n2Digits;
+        String n1_str = String.valueOf(n1);
+        String n2_str = String.valueOf(n2);
+        String n1_n2_str = n1_str + n2_str;
+        String n2_n1_str = n2_str + n1_str;
+        return n1_n2_str.compareTo(n2_n1_str) < 0;
     }
 }
