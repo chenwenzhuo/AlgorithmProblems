@@ -2,7 +2,7 @@ package com.hey_there.ValidParentheses;
 
 import java.util.Stack;
 
-public class Solutions {
+public class Solution_1 {
     private String leftBrackets = "([{";
     private String rightBrackets = ")]}";
 
