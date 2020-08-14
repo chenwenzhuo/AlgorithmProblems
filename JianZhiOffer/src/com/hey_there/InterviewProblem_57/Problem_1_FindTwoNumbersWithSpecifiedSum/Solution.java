@@ -1,4 +1,4 @@
-package com.hey_there.InterviewProblem_57_FindTwoNumbersWithSpecifiedSum;
+package com.hey_there.InterviewProblem_57.Problem_1_FindTwoNumbersWithSpecifiedSum;
 
 public class Solution {
     public int[] twoSum(int[] nums, int target) {
