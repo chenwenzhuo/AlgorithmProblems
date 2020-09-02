@@ -34,13 +34,13 @@ public class Solution {
                 }
             } else if (nums[i - 1] > 0) {//多重背包
                 for (int j = volKnapsack; j >= 1; j--) {
-                    int prevVol = j;
+                    int smallerVol = j;
                     int extraVal = 0;
                     for (int k = 1; k <= nums[i - 1]; k++) {
-                        prevVol -= volumes[i - 1];
+                        smallerVol -= volumes[i - 1];
                         extraVal += values[i - 1];
-                        if (prevVol>=0)
-                            dp[j] = Math.max(dp[j], dp[prevVol] + extraVal);
+                        if (smallerVol>=0)
+                            dp[j] = Math.max(dp[j], dp[smallerVol] + extraVal);
                         else break;
                     }
                 }
