@@ -23,9 +23,12 @@ public class Solution {
         int[] dp = new int[volKnapsack + 1];
         for (int i = 1; i <= kindsOfObject; i++) {
             for (int j = volKnapsack; j >= 1; j--) {
+                int smallerVol = j;
+                int extraVal=0;
                 for (int k = 1; k <= nums[i - 1]; k++) {
-                    int smallerVol = j - volumes[i - 1] * k;
-                    if (smallerVol >= 0) dp[j] = Math.max(dp[j], dp[smallerVol] + values[i - 1] * k);
+                    smallerVol -= volumes[i - 1];
+                    extraVal += values[i - 1];
+                    if (smallerVol >= 0) dp[j] = Math.max(dp[j], dp[smallerVol] + extraVal);
                     else break;
                 }
             }
