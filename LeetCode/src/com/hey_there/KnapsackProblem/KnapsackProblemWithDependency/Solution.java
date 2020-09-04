@@ -1,5 +1,6 @@
 package com.hey_there.KnapsackProblem.KnapsackProblemWithDependency;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Solution {
@@ -20,20 +21,29 @@ public class Solution {
             parents[i] = Integer.parseInt(line[2]);
         }
 
+        //计算从每个节点开始，向上到达根节点的路径中的所有结点的体积、价值之和
+        ArrayList<Integer> combVolumes = new ArrayList<>();
+        ArrayList<Integer> combValues = new ArrayList<>();
+        for (int i = 0; i < numObj; i++) {
+            int sumVolume = 0;
+            int sumValue = 0;
+            int idx = i;
+            while (idx != -1) {
+                sumVolume += volumes[idx];
+                sumValue += values[idx];
+                idx = parents[idx] == -1 ? -1 : parents[idx] - 1;
+            }
+            combVolumes.add(sumVolume);
+            combValues.add(sumValue);
+        }
+
+        //按01背包的方法计算
         int[] dp = new int[volKnapsack + 1];
-        for (int i = 1; i <= numObj; i++) {
+        for (int i = 1; i <= combVolumes.size(); i++) {
             for (int j = volKnapsack; j >= 1; j--) {
-                if (j >= volumes[i - 1]) {
-                    int smallerVol = j;
-                    int totalVal = 0;
-                    int idx = i;
-                    while (idx != -1) {
-                        smallerVol -= volumes[idx - 1];
-                        totalVal += values[idx - 1];
-                        idx = parents[idx - 1] == -1 ? -1 : parents[idx - 1];
-                    }
-                    if (smallerVol >= 0)
-                        dp[j] = Math.max(dp[j], dp[smallerVol] + totalVal);
+                int curVol = combVolumes.get(i - 1);
+                if (j >= curVol) {
+                    dp[j] = Math.max(dp[j], dp[j - curVol] + combValues.get(i - 1));
                 }
             }
         }
