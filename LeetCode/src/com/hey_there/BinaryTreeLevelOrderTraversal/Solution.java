@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class Solution {
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrder_1(TreeNode root) {
         List<List<Integer>> result_levelOrder = new ArrayList<>();//储存遍历结果的List
 
         //若为空树，直接返回
@@ -50,6 +50,27 @@ public class Solution {
         return result_levelOrder;
     }
 
+    public List<List<Integer>> levelOrder_2(TreeNode root) {
+        List<List<Integer>> res = new LinkedList<>();
+        if (root==null) return res;//若为空树，返回空集合
+
+        LinkedList<TreeNode> queue = new LinkedList<>();//队列
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            LinkedList<Integer> curLevelRes = new LinkedList<>();
+            int numLevelNodes = queue.size();//当前层的节点数
+            //将当前层节点全部出队
+            for (int i = 0; i < numLevelNodes; i++) {
+                TreeNode node = queue.poll();
+                curLevelRes.add(node.val);
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+            }
+            res.add(curLevelRes);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(9);
@@ -58,6 +79,6 @@ public class Solution {
         root.right.right = new TreeNode(7);
 
         Solution solution = new Solution();
-        System.out.println(solution.levelOrder(root));
+        System.out.println(solution.levelOrder_1(root));
     }
 }
