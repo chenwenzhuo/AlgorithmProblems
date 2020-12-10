@@ -27,7 +27,6 @@ public class Solution {
                     cashNum[0] -= 3;
                 } else return false;//无法凑出15元，返回false
             }
-
         }
         return true;
     }
