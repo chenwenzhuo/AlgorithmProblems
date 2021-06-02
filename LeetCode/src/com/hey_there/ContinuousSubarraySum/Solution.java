@@ -46,7 +46,7 @@ public class Solution {
             return false;
         }
 
-        //k不为0时，动态规划求解
+        //k不为0时，使用动态规划求解
         int[] dp = new int[lenNums];//dp数组用来记录子数组的和
         //计算dp数组中其他元素的值
         for (int i = 0; i < lenNums; i++) {
