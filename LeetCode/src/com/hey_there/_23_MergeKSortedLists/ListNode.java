@@ -1,4 +1,4 @@
-package com.hey_there.MergeKSortedLists;
+package com.hey_there._23_MergeKSortedLists;
 
 public class ListNode {
     public int val;

@@ -1,19 +1,16 @@
-package com.hey_there.MergeKSortedLists;
+package com.hey_there._23_MergeKSortedLists;
 
-public class Solution {
+public class Solutions_1 {
     /*将合并 k 个链表转化成合并两个链表的问题
-    * 使用两个链表数组 prevLists 和 nextLists
-    * 将 prevLists 中第1，2个链表合并，第3，4个链表合并...放入 nextLists 中
-    * 知道只剩一个链表为止
-    * 时间复杂度：O(Nlogk) ，其中 k 是链表的数目，N 是结点总数*/
+     * 使用两个链表数组 prevLists 和 nextLists
+     * 将 prevLists 中第1，2个链表合并，第3，4个链表合并...放入 nextLists 中
+     * 直到只剩一个链表为止
+     * 时间复杂度：O(Nlogk) ，其中 k 是链表的数目，N 是结点总数*/
     public ListNode mergeKLists_divideAndConquer(ListNode[] lists) {
         int numOfLists = lists.length;//未合并的链表的数量
         //处理特殊值
-        if (numOfLists == 0) {
-            return null;
-        } else if (numOfLists == 1) {
-            return lists[0];
-        }
+        if (numOfLists == 0) return null;
+        else if (numOfLists == 1) return lists[0];
 
         ListNode[] prevLists = lists;
         ListNode[] nextLists;
@@ -27,10 +24,8 @@ public class Solution {
                 //若有奇数个链表未合并
                 nextLists = new ListNode[numOfLists / 2 + 1];
             }
-
             // prevLists 和 nextLists 的下标
             int indexPrevLists = 0, indexNextLists = 0;
-
             //将prevLists 中的链表合并，放到 nextLists 中
             while (indexPrevLists < numOfLists) {
                 //仅当numOfLists为奇数时可能成立，将多出来的一个链表放到nextLists数组的最后一位
@@ -38,11 +33,9 @@ public class Solution {
                     nextLists[indexNextLists] = prevLists[indexPrevLists];
                     break;
                 }
-
                 //合并prevLists中的两个链表，合并后的大链表放在nextLists中
                 nextLists[indexNextLists] =
                         mergeTwoSortedLists(prevLists[indexPrevLists], prevLists[indexPrevLists + 1]);
-
                 //更改下标的值
                 indexPrevLists += 2;
                 indexNextLists += 1;
@@ -116,8 +109,8 @@ public class Solution {
         list_2.next.next = new ListNode(7);
         list_2.next.next.next = new ListNode(11);
 
-        Solution solution = new Solution();
-        ListNode merged = solution.mergeTwoSortedLists(list_1, list_2);
+        Solutions_1 solutions1 = new Solutions_1();
+        ListNode merged = solutions1.mergeTwoSortedLists(list_1, list_2);
         ListNode node = merged;
         while (node != null) {
             System.out.print(node.val + "  ");
