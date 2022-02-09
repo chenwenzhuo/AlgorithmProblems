@@ -1,6 +1,6 @@
-package com.hey_there.MergeTwoSortedLists;
+package com.hey_there._21_MergeTwoSortedLists;
 
-public class Solutions {
+public class Solutions_1 {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         //合并后的List,为其添加一个头结点以方便操作
         ListNode mergedList = new ListNode(-1);

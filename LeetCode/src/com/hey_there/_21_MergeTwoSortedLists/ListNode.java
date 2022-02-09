@@ -1,4 +1,4 @@
-package com.hey_there.MergeTwoSortedLists;
+package com.hey_there._21_MergeTwoSortedLists;
 
 public class ListNode {
     int val;
