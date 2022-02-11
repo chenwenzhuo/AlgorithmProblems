@@ -1,35 +1,18 @@
-package com.hey_there.IntersectionOfTwoLinkedLists;
+package com.hey_there._160_IntersectionOfTwoLinkedLists;
 
-public class Solution {
+public class Solutions {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) {
             return null;//二者任意一个为null时都没有交点
         }
         ListNode refA = headA, refB = headB;//refA和refB用来遍历链表
-        ListNode tailA = null, tailB = null;//tailA和tailB用来记录两个链表的尾节点
         while (refA != refB) {
-            if (refA.next != null) {
-                refA = refA.next;//未走到链表尾部时继续向后
-            } else {
-                //走到链表尾部时
-                tailA = refA;//记录下A链表的尾节点
-                //两个链表的尾节点都已找到时，比较两尾节点是否相同
-                if (tailB != null && tailA != tailB) {
-                    return null;//两尾节点不同则链表不相交
-                }
-                refA = headB;
-            }
-            if (refB.next != null) {
-                refB = refB.next;
-            } else {
-                tailB = refB;
-                if (tailA != null && tailA != tailB) {
-                    return null;
-                }
-                refB = headA;
-            }
+            //将refA和refB依次后移，移到一个链表
+            refA = refA != null ? refA.next : headB;
+            refB = refB != null ? refB.next : headA;
         }
-        //refA和refB指向同一个节点时，此节点为交点
+        //refA和refB值相等时，当前节点为相交节点
+        //没有相交节点时refA，refB均为null
         return refA;
     }
 
@@ -56,13 +39,12 @@ public class Solution {
         }
         System.out.println();
 
-        Solution solution = new Solution();
-        ListNode intersection = solution.getIntersectionNode(headA, headB);
+        Solutions solutions = new Solutions();
+        ListNode intersection = solutions.getIntersectionNode(headA, headB);
         if (intersection != null) {
             System.out.println("intersection val: " + intersection.val);
         } else {
             System.out.println("intersection val: " + null);
-
         }
     }
 }

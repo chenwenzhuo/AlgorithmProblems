@@ -1,4 +1,4 @@
-package com.hey_there.IntersectionOfTwoLinkedLists;
+package com.hey_there._160_IntersectionOfTwoLinkedLists;
 
 public class ListNode {
     public int val;
