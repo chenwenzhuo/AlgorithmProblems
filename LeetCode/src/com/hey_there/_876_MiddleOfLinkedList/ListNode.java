@@ -1,4 +1,4 @@
-package com.hey_there.MiddleOfLinkedList;
+package com.hey_there._876_MiddleOfLinkedList;
 
 public class ListNode {
     int val;
