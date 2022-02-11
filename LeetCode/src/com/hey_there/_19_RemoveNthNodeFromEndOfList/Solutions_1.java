@@ -1,6 +1,6 @@
-package com.hey_there.RemoveNthNodeFromEndOfList;
+package com.hey_there._19_RemoveNthNodeFromEndOfList;
 
-public class Solutions {
+public class Solutions_1 {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode[] lastNodesFromEnd = new ListNode[n];//倒数前n个结点
         ListNode pre_NthFromEnd = null;//倒数第n个结点的前驱

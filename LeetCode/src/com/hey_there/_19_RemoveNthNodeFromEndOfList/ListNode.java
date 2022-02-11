@@ -1,4 +1,4 @@
-package com.hey_there.RemoveNthNodeFromEndOfList;
+package com.hey_there._19_RemoveNthNodeFromEndOfList;
 
 public class ListNode {
     int val;
