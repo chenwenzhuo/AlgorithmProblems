@@ -1,6 +1,6 @@
 package com.hey_there._92_ReverseLinkedList_2;
 
-public class Solutions {
+public class Solutions_1 {
     public ListNode reverseBetween(ListNode head, int m, int n) {
         //若反转的起始点和结束点相同，无需反转，返回原链表
         if (m == n) {
@@ -99,8 +99,8 @@ public class Solutions {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
 
-        Solutions solutions = new Solutions();
-        head = solutions.reverseBetween_recursive(head, 1, 1);
+        Solutions_1 solutions1 = new Solutions_1();
+        head = solutions1.reverseBetween_recursive(head, 1, 1);
 
         while (head != null) {
             System.out.println(head.val);
