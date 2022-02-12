@@ -1,6 +1,6 @@
-package com.hey_there.ReverseLinkedList_2;
+package com.hey_there._92_ReverseLinkedList_2;
 
-public class Solution {
+public class Solutions {
     public ListNode reverseBetween(ListNode head, int m, int n) {
         //若反转的起始点和结束点相同，无需反转，返回原链表
         if (m == n) {
@@ -55,6 +55,43 @@ public class Solution {
         return headNode.next;
     }
 
+    public ListNode reverseBetween_recursive(ListNode head, int left, int right) {
+        ListNode dummy = new ListNode(-1, head);//增加一个哑节点指向链表第一个节点，方便操作
+        //寻找第left个节点第前驱节点
+        ListNode prevOfL = dummy;//第left个节点的前驱节点
+        int n = 1;//prevOfL引用初始指向第一个节点的前驱
+        while (n < left) {
+            prevOfL = prevOfL.next;
+            n++;
+        }
+        //寻找第right个节点的后继节点
+        ListNode rightNode = prevOfL.next;//第right个节点
+        n = left;//rightNode初始指向第left个节点
+        while (n < right) {
+            rightNode = rightNode.next;
+            n++;
+        }
+        //此时rightNode指向第right个节点
+        ListNode postOfR = rightNode.next;//第right个节点的后继节点
+        rightNode.next = null;//断开连接
+
+        //进行第left到第right个节点的反转
+        ListNode rev = recursiveReverse(prevOfL.next);
+        //此时prevOfL.next指向rev链表的尾节点
+        prevOfL.next.next = postOfR;//将后继未反转部分接上去
+        prevOfL.next = rev;//将反转后的部分接到前驱节点上
+        return dummy.next;
+    }
+
+    private ListNode recursiveReverse(ListNode head) {
+        if (head.next == null) return head;//head.next为null，表示只有一个节点，直接返回
+        ListNode rev = recursiveReverse(head.next);//反转head节点之后的链表
+        //此时head指向rev链表的尾节点
+        head.next.next = head;//将head节点接到rev链表尾部
+        head.next = null;
+        return rev;
+    }
+
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
@@ -62,8 +99,8 @@ public class Solution {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
 
-        Solution solution = new Solution();
-        head = solution.reverseBetween(head, 2, 4);
+        Solutions solutions = new Solutions();
+        head = solutions.reverseBetween_recursive(head, 1, 1);
 
         while (head != null) {
             System.out.println(head.val);
