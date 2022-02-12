@@ -1,6 +1,6 @@
-package com.hey_there.ReverseLinkedList;
+package com.hey_there._206_ReverseLinkedList;
 
-public class Solution {
+public class Solutions {
     public ListNode reverseList(ListNode head) {
         ListNode reversedHead = new ListNode(-1);
 

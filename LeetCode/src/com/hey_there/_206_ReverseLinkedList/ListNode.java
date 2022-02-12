@@ -1,4 +1,4 @@
-package com.hey_there.ReverseLinkedList;
+package com.hey_there._206_ReverseLinkedList;
 
 public class ListNode {
     public int val;
