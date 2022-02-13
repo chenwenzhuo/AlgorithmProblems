@@ -1,6 +1,6 @@
-package com.hey_there.ReverseNodesInKGroup;
+package com.hey_there._25_ReverseNodesInKGroup;
 
-public class Solution {
+public class Solution_1 {
     public ListNode reverseKGroup(ListNode head, int k) {
         if (head == null) {
             return null;
@@ -52,7 +52,7 @@ public class Solution {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
 
-        Solution solution = new Solution();
+        Solution_1 solution = new Solution_1();
         head = solution.reverseKGroup(head, 2);
 
         while (head != null) {
