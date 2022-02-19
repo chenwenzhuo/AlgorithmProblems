@@ -1,4 +1,4 @@
-package com.hey_there.DiameterOfBinaryTree;
+package com.hey_there._543_DiameterOfBinaryTree;
 
 public class Solution {
     private int diameter = 0;
