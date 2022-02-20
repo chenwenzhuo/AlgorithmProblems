@@ -1,9 +1,9 @@
-package com.hey_there.PopulatingNextRightPointersInEachNode;
+package com.hey_there._116_PopulatingNextRightPointersInEachNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Solution {
+public class Solutions_1 {
     //按二叉树的层序遍历的思想完成
     public Node connect_levelOrderTraversalBased(Node root) {
         //若为空树，直接返回
@@ -56,7 +56,7 @@ public class Solution {
 
     private Node connectNext(Node node) {
         if (node.left != null && node.right != null) {
-            //左右子树均非空时，递归对其进行处理
+            //遇到非叶子节点时，递归对其进行处理
             Node left = connectNext(node.left);
             Node right = connectNext(node.right);
 
@@ -67,9 +67,7 @@ public class Solution {
                 left = left.right;
                 right = right.left;
             }
-            return node;
-        } else {
-            return node;
         }
+        return node;
     }
 }
