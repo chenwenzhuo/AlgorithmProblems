@@ -1,4 +1,4 @@
-package com.hey_there.PopulatingNextRightPointersInEachNode;
+package com.hey_there._116_PopulatingNextRightPointersInEachNode;
 
 class Node {
     public int val;
@@ -7,6 +7,10 @@ class Node {
     public Node next;
 
     public Node() {
+    }
+
+    public Node(int _val) {
+        val = _val;
     }
 
     public Node(int val, Node left, Node right, Node next) {
