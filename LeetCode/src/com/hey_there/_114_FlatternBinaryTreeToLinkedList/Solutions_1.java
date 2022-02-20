@@ -1,9 +1,9 @@
-package com.hey_there.FlatternBinaryTreeToLinkedList;
+package com.hey_there._114_FlatternBinaryTreeToLinkedList;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
+public class Solutions_1 {
     private List<Integer> result_preOrderTraversal = new ArrayList<>();
 
     /*观察到链表序列即为先序遍历序列，
