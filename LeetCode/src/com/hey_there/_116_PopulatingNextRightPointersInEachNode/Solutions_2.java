@@ -13,7 +13,7 @@ public class Solutions_2 {
         node1.next = node2;
         connectTwoNode(node1.left, node1.right);//对node1的左右子树内部进行连接
         connectTwoNode(node2.left, node2.right);//对node2的左右子树内部进行连接
-        //将node1子树的右侧节点连接到node2子树的左侧节点
+        //将node1子树的右侧节点连接到node2子树的左侧节点。
         connectTwoNode(node1.right, node2.left);
     }
 }
