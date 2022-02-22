@@ -1,8 +1,8 @@
-package com.hey_there.ConstructBinaryTreeFromPreorderInorderTraversal;
+package com.hey_there._105_ConstructBinaryTreeFromPreorderInorderTraversal;
 
 import java.util.*;
 
-public class Solution_recursive {
+public class Solutions_1 {
     private Map<Integer, Integer> inOrder_value2Index = new HashMap<>();
     private int[] preOrder;
     private int preIndex = 0;
@@ -76,7 +76,7 @@ public class Solution_recursive {
     }
 
     public static void main(String[] args) {
-        Solution_recursive solutionRecursive = new Solution_recursive();
+        Solutions_1 solutionRecursive = new Solutions_1();
         int[] preOrder = {3, 9, 20, 15, 7};
         int[] inOrder = {9, 3, 15, 20, 7};
         System.out.println(solutionRecursive.buildTree_improved(preOrder, inOrder).val);
