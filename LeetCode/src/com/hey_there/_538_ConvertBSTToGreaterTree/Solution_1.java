@@ -1,4 +1,4 @@
-package com.hey_there.ConvertBinarySearchTreeToGreaterTree;
+package com.hey_there._538_ConvertBSTToGreaterTree;
 
 import java.util.ArrayList;
 

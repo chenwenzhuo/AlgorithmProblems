@@ -1,4 +1,4 @@
-package com.hey_there.ConvertBinarySearchTreeToGreaterTree;
+package com.hey_there._538_ConvertBSTToGreaterTree;
 
 class Solution_2 {
     private int sum = 0;
