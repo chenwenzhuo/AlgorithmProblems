@@ -1,6 +1,6 @@
-package com.hey_there.kthSmallestElementInBST;
+package com.hey_there._230_kthSmallestElementInBST;
 
-public class Solution {
+public class Solution_1 {
     private int k;
     private int count = 0;//在递归中表示在当前次递归的tree.val是第几小的值
     private int targetValue;//目标值
@@ -60,7 +60,7 @@ public class Solution {
         root.left.right.right = new TreeNode(5);
         root.left.left.left = new TreeNode(1);
 
-        Solution solution = new Solution();
+        Solution_1 solution = new Solution_1();
         solution.inOrder(root);
         System.out.println();
         System.out.println("第k小的数：" + solution.kthSmallest(root, 7));
