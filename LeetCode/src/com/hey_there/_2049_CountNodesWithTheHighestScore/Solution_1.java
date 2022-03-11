@@ -2,7 +2,7 @@ package com.hey_there._2049_CountNodesWithTheHighestScore;
 
 import java.util.ArrayList;
 
-public class Solution {
+public class Solution_1 {
     private long maxScore = 0;//最高分
     private int maxCount = 0;//最高分出现次数
     private int numNodes;//树的总节点数
@@ -45,7 +45,7 @@ public class Solution {
 
     public static void main(String[] args) {
         int[] parents = {-1, 2, 0, 2, 0};
-        Solution solution = new Solution();
+        Solution_1 solution = new Solution_1();
         int res = solution.countHighestScoreNodes(parents);
         System.out.println(res);
     }
