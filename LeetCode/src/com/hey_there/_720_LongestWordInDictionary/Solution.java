@@ -1,9 +1,7 @@
 package com.hey_there._720_LongestWordInDictionary;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Set;
 
 /* 题目描述不够清楚
  * 从官方题解倒推，符合要求的单词必须从单个字母逐步变长，
