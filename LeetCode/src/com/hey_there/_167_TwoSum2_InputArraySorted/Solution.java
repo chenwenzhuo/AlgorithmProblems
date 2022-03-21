@@ -1,4 +1,4 @@
-package com.hey_there.TwoSum_2_InputArraySorted;
+package com.hey_there._167_TwoSum2_InputArraySorted;
 
 public class Solution {
     public int[] twoSum(int[] numbers, int target) {
