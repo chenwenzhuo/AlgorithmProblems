@@ -15,7 +15,7 @@ public class Solution {
                 lineLen = curChLen;//新一行宽度为当前字符宽度
                 continue;
             }
-            //当前行剩余宽度足够时，当前字符继续写在当前行
+            //当前行剩余宽度足够时当前字符继续写在当前行
             lineLen += curChLen;
         }
         return new int[]{lines, lineLen};
