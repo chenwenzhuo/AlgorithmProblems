@@ -1,4 +1,4 @@
-package com.hey_there.OneWayLCCI;
+package com.hey_there._01_05_OneWayLCCI;
 
 public class Solution {
     public boolean oneEditAway(String first, String second) {
