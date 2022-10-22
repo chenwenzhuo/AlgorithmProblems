@@ -1,8 +1,8 @@
 package com.hey_there._583_DeleteOperationForTwoStrings;
 
 public class Solution {
-    //删除字符得到的结果即为最长公共子序列
-    //计算最长公共子序列长度，与原字符串的长度之差，即为最小步数
+    // 删除字符得到的结果即为最长公共子序列
+    // 计算最长公共子序列长度，与原字符串的长度之差，即为最小步数
     public int minDistance(String word1, String word2) {
         int m = word1.length(), n = word2.length();
         //dp[i][j]表示 s1[0..i-1]和s2[0...j-1] 的最长公共子序列长度
