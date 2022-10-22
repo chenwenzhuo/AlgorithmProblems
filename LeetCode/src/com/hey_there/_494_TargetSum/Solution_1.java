@@ -1,6 +1,6 @@
 package com.hey_there._494_TargetSum;
 
-public class Solution {
+public class Solution_1 {
     //回溯算法
     public int findTargetSumWays(int[] nums, int target) {
         return backtrack(nums, nums.length - 1, target);
@@ -25,7 +25,7 @@ public class Solution {
         int target = 3;*/
         int[] nums = {0, 0, 0, 0, 0, 0, 0, 0, 1};
         int target = 1;
-        Solution solution = new Solution();
+        Solution_1 solution = new Solution_1();
         int res = solution.findTargetSumWays(nums, target);
         System.out.println(res);
     }
