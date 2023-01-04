@@ -4,23 +4,24 @@ import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 
 public class MinStack {
-    private ArrayDeque<Integer> stack;//栈
-    private PriorityQueue<Integer> sortedElements;//排序后的元素
+    private ArrayDeque<Integer> stack;
+    private ArrayDeque<Integer> minValues;
 
     public MinStack() {
         this.stack = new ArrayDeque<>();
-        this.sortedElements = new PriorityQueue<>();
+        this.minValues = new ArrayDeque<>();
     }
 
     public void push(int x) {
         stack.push(x);
-        //插入优先队列，自动排序
-        sortedElements.offer(x);
+        if (minValues.isEmpty() || x <= minValues.peek())
+            minValues.push(x);
     }
 
     public void pop() {
-        Integer topElement = stack.pop();//移除栈顶元素
-        sortedElements.remove(topElement);
+        int value = stack.pop();
+        if (!minValues.isEmpty() && value == minValues.peek())
+            minValues.pop();
     }
 
     public int top() {
@@ -28,6 +29,6 @@ public class MinStack {
     }
 
     public int min() {
-        return sortedElements.peek();
+        return minValues.peek();
     }
 }
