@@ -3,16 +3,15 @@ package com.hey_there.InterviewProblem_24_ReverseList;
 public class Solution {
     public ListNode reverseList(ListNode head) {
         if (head == null) return null;
-        ListNode newHead = new ListNode(-1);
-        newHead.next = head;
-        ListNode cur = head.next;
-        //不断将cur指向的节点插入到newHead节点之后
-        while (cur != null) {
-            head.next = cur.next;
-            cur.next = newHead.next;
-            newHead.next = cur;
-            cur = head.next;
+        ListNode dummy = new ListNode(-1);
+        ListNode ref = head;
+        //将ref指向的节点从链表中取下，接到节点dummy之后
+        while (ref != null) {
+            ListNode nextNode = ref.next;
+            ref.next = dummy.next;
+            dummy.next = ref;
+            ref = nextNode;
         }
-        return newHead.next;
+        return dummy.next;
     }
 }
