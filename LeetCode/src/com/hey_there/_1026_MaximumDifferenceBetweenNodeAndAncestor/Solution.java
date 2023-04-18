@@ -1,6 +1,5 @@
 package com.hey_there._1026_MaximumDifferenceBetweenNodeAndAncestor;
 
-import java.io.FileOutputStream;
 import java.util.HashSet;
 
 public class Solution {
