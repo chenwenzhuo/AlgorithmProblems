@@ -4,27 +4,25 @@ import java.util.HashSet;
 
 public class Solution {
     private HashSet<TreeNode> nodesSet = new HashSet<>();
-    private TreeNode ancestor = null;//最近公共祖先
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode[] nodes) {
         for (TreeNode node : nodes)
             nodesSet.add(node);//将所有节点存入哈希集合中
-        subsetSize(root);
-        return ancestor;
+        return lowestCommonAncestor(root);
     }
 
-    //计算子树root中包含的nodesSet子集的大小
-    private int subsetSize(TreeNode root) {
-        if (root == null) return 0;
-        //左右子树包含的子集大小
-        int leftSize = subsetSize(root.left);
-        int rightSize = subsetSize(root.right);
-        //当前根节点在nodesSet集合中，cur为1，否则为0
-        int cur = nodesSet.contains(root) ? 1 : 0;
-
-        int size = leftSize + rightSize + cur;
-        if (size == nodesSet.size() && ancestor == null)
-            ancestor = root;
-        return size;
+    public TreeNode lowestCommonAncestor(TreeNode root) {
+        if (root == null) return null;
+        //若集合包含当前root节点，则将root返回
+        if (nodesSet.contains(root))
+            return root;
+        //递归检查子树
+        TreeNode leftRes = lowestCommonAncestor(root.left);
+        TreeNode rightRes = lowestCommonAncestor(root.right);
+        //若左右子树中都包含集合中节点，则当前root是LCA
+        if (leftRes != null && rightRes != null)
+            return root;
+        //左子树不含集合中节点，则返回右子树的结果，反之亦然
+        return leftRes == null ? rightRes : leftRes;
     }
 }
