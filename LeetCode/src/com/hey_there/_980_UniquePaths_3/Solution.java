@@ -1,13 +1,9 @@
 package com.hey_there._980_UniquePaths_3;
 
-import java.util.HashSet;
-
 public class Solution {
     private int totalPaths = 0;//路径计数器
     private int[][] dirs = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};//四个移动方向
-    //记录走过的路径，元素为方格在grid中的顺序下标（从0到m*n-1）
-    //不需要保存路径中的单元格顺序，故用HashSet提高效率
-    private HashSet<Integer> path = new HashSet<>();
+    private int pathLen = 0;//记录走过的路径长度
     private boolean[][] used;//标记单元格是否已在路径中
     //网格相关信息
     private int[][] grid;
@@ -33,15 +29,15 @@ public class Solution {
                 }
             }
         }
-        path.add(start[0] * gCols + start[1]);
+        pathLen = 1;//起点加入路径中
         backtrack(start[0], start[1]);
         return totalPaths;
     }
 
     private void backtrack(int row, int col) {
-        //路径中包含终点时，检查路径长度是否满足要求
-        if (path.contains(end[0] * gCols + end[1])) {
-            if (path.size() == spaceCnt + 2)
+        //到达终点时，检查路径长度是否满足要求
+        if (row == end[0] && col == end[1]) {
+            if (pathLen == spaceCnt + 2)
                 totalPaths++;//到达终点且经过了所有空格
             //未经过所有空格，直接返回
             return;
@@ -54,11 +50,11 @@ public class Solution {
                     || grid[nextRow][nextCol] == 1 || grid[nextRow][nextCol] == -1) {
                 continue;
             }
-            path.add(nextRow * gCols + nextCol);//下一步的格子加入路径
+            pathLen++;//下一步的格子加入路径
             used[nextRow][nextCol] = true;//标记为已访问
             backtrack(nextRow, nextCol);
             //恢复场景
-            path.remove(nextRow * gCols + nextCol);
+            pathLen--;
             used[nextRow][nextCol] = false;
         }
     }
