@@ -1,4 +1,4 @@
-package com.hey_there.HouseRobber_3;
+package com.hey_there._337_HouseRobber_3;
 
 public class TreeNode {
     int val;

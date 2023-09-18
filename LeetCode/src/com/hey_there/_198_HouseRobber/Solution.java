@@ -1,4 +1,4 @@
-package com.hey_there.HouseRobber;
+package com.hey_there._198_HouseRobber;
 
 public class Solution {
     public int rob(int[] nums) {
