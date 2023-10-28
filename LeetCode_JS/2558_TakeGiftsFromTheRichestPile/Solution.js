@@ -14,12 +14,18 @@ let pickGifts = function (gifts, k) {
         let squareRoot = Math.floor(Math.sqrt(biggest));
         total -= (biggest - squareRoot); //从总数中减去变化量
 
-        //将这堆剩下的值重新加入数组
-        let targetIndex = 0; //squareRoot插入数组时的目标下标
-        while (gifts[targetIndex] > squareRoot) {
-            targetIndex++;
+        //将这堆剩下的值（squareRoot）重新加入数组，并保持递减
+        let low = 0,
+            high = gifts.length - 1;
+        while (low <= high) {
+            let mid = Math.floor((low + high) / 2);
+            if (gifts[mid] > squareRoot) {
+                low = mid + 1;
+            } else if (gifts[mid] <= squareRoot) {
+                high = mid - 1;
+            }
         }
-        gifts.splice(targetIndex, 0, squareRoot);
+        gifts.splice(low, 0, squareRoot);
     }
     return total;
 };
