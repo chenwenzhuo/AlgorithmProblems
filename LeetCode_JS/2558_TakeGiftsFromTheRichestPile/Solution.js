@@ -21,7 +21,7 @@ let pickGifts = function (gifts, k) {
             let mid = Math.floor((low + high) / 2);
             if (gifts[mid] > squareRoot) {
                 low = mid + 1;
-            } else if (gifts[mid] <= squareRoot) {
+            } else {
                 high = mid - 1;
             }
         }
