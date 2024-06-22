@@ -14,7 +14,7 @@ const {
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-const bstToGst = function (root) {
+var bstToGst = function (root) {
     // 先右子树后左子树的中序遍历
     const traverseTree = (root, sumGreater) => {
         if (!root)
@@ -28,6 +28,21 @@ const bstToGst = function (root) {
     traverseTree(root, 0);
     return root;
 };
+
+var bstToGst = function (root) {
+    let greaterSum = 0;
+    // 先右子树后左子树的中序遍历
+    const traverse = tree => {
+        if (!tree)
+            return;
+        traverse(tree.right);
+        tree.val += greaterSum;
+        greaterSum = tree.val;
+        traverse(tree.left);
+    }
+    traverse(root);
+    return root;
+}
 
 let root = {
     val: 4,
