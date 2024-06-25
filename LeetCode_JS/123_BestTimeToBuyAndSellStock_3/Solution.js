@@ -21,4 +21,5 @@ var maxProfit = function (prices) {
             dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j - 1][0] - prices[i]);
         }
     }
+    return dp[n - 1][2][0];
 };
